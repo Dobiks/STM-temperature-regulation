@@ -31,6 +31,7 @@
 #include "bmp280_defs.h"
 #include "bmp280_config.h"
 #include "lcd_config.h"
+#include "encoder_config.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -77,6 +78,8 @@ int main(void)
 	struct bmp280_uncomp_data bmp280_1_data;
 	int32_t temp32;
 	double temp;
+	int32_t encoder;
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -107,19 +110,38 @@ int main(void)
   /* USER CODE BEGIN 2 */
   int8_t BMP280_Status =0;
   BMP280_Status = BMP280_Init(&bmp280_1);
-  LCD_Init(&hlcd1);
-  LCD_printStr(&hlcd1, "Message");
+
+  /** LCD with user menu initialization **************************************************/
+   LCD_Init(&hlcd1);
+
+  /** Rotary quadrature encoder initialization *******************************************/
+    ENC_Init(&henc1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  // Read rotary encoder counter
+	  ENC_GetCounter(&henc1);
 	  /* Reading the raw data from sensor */
 	  BMP280_Status = bmp280_get_uncomp_data(&bmp280_1_data, &bmp280_1);
 
 	  /* Getting the 32 bit compensated temperature */
 	  BMP280_Status = bmp280_get_comp_temp_32bit(&temp32, bmp280_1_data.uncomp_temp, &bmp280_1);
+
+
+
+
+
+
+
+	  LCD_SetCursor(&hlcd1, 0, 0);
+	  LCD_printf(&hlcd1,"Temp: %03d", temp32 );
+      LCD_SetCursor(&hlcd1, 1, 0);
+      LCD_printf(&hlcd1, "ENC: %03d",  henc1.Counter );
+
+
 	  HAL_Delay(100);
     /* USER CODE END WHILE */
 
