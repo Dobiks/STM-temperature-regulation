@@ -78,7 +78,6 @@ int main(void)
 	struct bmp280_uncomp_data bmp280_1_data;
 	int32_t temp32;
 	double temp;
-	int32_t encoder;
 
   /* USER CODE END 1 */
 
@@ -130,17 +129,7 @@ int main(void)
 	  /* Getting the 32 bit compensated temperature */
 	  BMP280_Status = bmp280_get_comp_temp_32bit(&temp32, bmp280_1_data.uncomp_temp, &bmp280_1);
 
-
-
-
-
-
-
-	  LCD_SetCursor(&hlcd1, 0, 0);
-	  LCD_printf(&hlcd1,"Temp: %03d", temp32 );
-      LCD_SetCursor(&hlcd1, 1, 0);
-      LCD_printf(&hlcd1, "ENC: %03d",  henc1.Counter );
-
+	  _LCD_Show(&hlcd1, temp32, temp32, "80");
 
 	  HAL_Delay(100);
     /* USER CODE END WHILE */

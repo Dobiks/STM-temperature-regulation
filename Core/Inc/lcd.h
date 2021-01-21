@@ -151,6 +151,16 @@ void LCD_Clear(LCD_HandleTypeDef * lcd);
  */
 void LCD_DefineChar(LCD_HandleTypeDef* lcd, uint8_t code, uint8_t bitmap[]);
 
+/**
+ * @brief Clear the screen.
+ * @param[in] hlcd   LCD handler
+ * @param[in] act_temp  Null-terminated string
+ * @param[in] dest_temp  Null-terminated string
+ * @param[in] fan  Null-terminated string
+ * @return None
+ */
+void _LCD_Show(LCD_HandleTypeDef* hlcd, char* act_temp, char* dest_temp,char* fan);
+
 #ifdef LCD_PRINTF_ENABLE
 /**
  * @brief Write text in standard format on the current position.

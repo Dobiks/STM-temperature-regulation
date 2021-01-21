@@ -13,6 +13,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "lcd.h"
+#include <stdbool.h>
 
 /* Typedef -------------------------------------------------------------------*/
 
@@ -26,7 +27,7 @@
 /* Private variables ---------------------------------------------------------*/
 const uint8_t LCD_ROW_16[] = {0x00, 0x40, 0x10, 0x50};
 const uint8_t LCD_ROW_20[] = {0x00, 0x40, 0x14, 0x54};
-
+uint8_t fan_blink=0;
 /* Public variables ----------------------------------------------------------*/
 
 /* Private function prototypes -----------------------------------------------*/
@@ -240,6 +241,37 @@ void LCD_DefineChar(LCD_HandleTypeDef* hlcd, uint8_t code, uint8_t bitmap[]){
   for(uint8_t i=0; i < 8; ++i)
     lcd_write_data(hlcd, bitmap[i]);
 }
+/**
+ * @brief Clear the screen.
+ * @param[in] hlcd   LCD handler
+ * @param[in] act_temp  Null-terminated string
+ * @param[in] dest_temp  Null-terminated string
+ * @param[in] fan  Null-terminated string
+ * @return None
+ */
+void _LCD_Show(LCD_HandleTypeDef* hlcd, char* act_temp, char* dest_temp,char* fan){
+	LCD_SetCursor(hlcd, 0, 0);
+    LCD_printf(hlcd,"Tz: %03d", act_temp);
+
+    if(fan_blink==1){
+    	LCD_SetCursor(hlcd, 0, 14);
+    	LCD_printf(hlcd,"*");
+    	fan_blink=0;
+    }
+    else{
+    	LCD_SetCursor(hlcd, 0, 14);
+    	LCD_printf(hlcd," ");
+    	fan_blink=1;
+    }
+
+    LCD_SetCursor(hlcd, 1, 0);
+	LCD_printf(hlcd,"To: %03d", dest_temp );
+	LCD_SetCursor(hlcd, 1, 14);
+	LCD_printf(hlcd,fan);
+
+}
+
+
 
 #ifdef LCD_PRINTF_ENABLE
 /**
