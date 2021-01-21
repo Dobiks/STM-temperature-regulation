@@ -30,6 +30,7 @@
 #include "bmp280.h"
 #include "bmp280_defs.h"
 #include "bmp280_config.h"
+#include "lcd_config.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -102,9 +103,12 @@ int main(void)
   MX_TIM4_Init();
   MX_I2C1_Init();
   MX_SPI4_Init();
+  MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
   int8_t BMP280_Status =0;
   BMP280_Status = BMP280_Init(&bmp280_1);
+  LCD_Init(&hlcd1);
+  LCD_printStr(&hlcd1, "Message");
   /* USER CODE END 2 */
 
   /* Infinite loop */

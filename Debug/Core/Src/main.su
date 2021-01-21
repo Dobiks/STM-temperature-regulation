@@ -1,4 +1,4 @@
-main.c:58:9:toInt	16	static
-main.c:73:5:main	24	static
-main.c:131:6:SystemClock_Config	216	static
-main.c:195:6:Error_Handler	4	static
+main.c:59:9:toInt	16	static
+main.c:74:5:main	24	static
+main.c:135:6:SystemClock_Config	216	static
+main.c:199:6:Error_Handler	4	static

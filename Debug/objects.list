@@ -2,6 +2,8 @@
 "Core/Src/bmp280_config.o"
 "Core/Src/gpio.o"
 "Core/Src/i2c.o"
+"Core/Src/lcd.o"
+"Core/Src/lcd_config.o"
 "Core/Src/main.o"
 "Core/Src/spi.o"
 "Core/Src/stm32f7xx_hal_msp.o"
