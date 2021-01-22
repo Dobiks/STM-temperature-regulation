@@ -109,6 +109,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
   int8_t BMP280_Status =0;
   BMP280_Status = BMP280_Init(&bmp280_1);
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
+  __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 0);
 
   /** LCD with user menu initialization **************************************************/
    LCD_Init(&hlcd1);

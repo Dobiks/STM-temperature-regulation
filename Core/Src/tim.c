@@ -98,6 +98,10 @@ void MX_TIM3_Init(void)
   {
     Error_Handler();
   }
+  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
   HAL_TIM_MspPostInit(&htim3);
 
 }
@@ -195,7 +199,6 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
     __HAL_RCC_GPIOC_CLK_ENABLE();
     /**TIM3 GPIO Configuration
     PB1     ------> TIM3_CH4
-    PC7     ------> TIM3_CH2
     PC8     ------> TIM3_CH3
     */
     GPIO_InitStruct.Pin = TM3_PWM_CH4_Pin;
@@ -205,12 +208,12 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
     GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
     HAL_GPIO_Init(TM3_PWM_CH4_GPIO_Port, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = LED_RGB_CH_G_Pin|LED_RGB_CH_B_Pin;
+    GPIO_InitStruct.Pin = LED_RGB_CH_B_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
-    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+    HAL_GPIO_Init(LED_RGB_CH_B_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN TIM3_MspInit 1 */
 
@@ -268,10 +271,19 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* timHandle)
 
   /* USER CODE END TIM3_MspPostInit 0 */
 
+    __HAL_RCC_GPIOC_CLK_ENABLE();
     __HAL_RCC_GPIOB_CLK_ENABLE();
     /**TIM3 GPIO Configuration
+    PC7     ------> TIM3_CH2
     PB4     ------> TIM3_CH1
     */
+    GPIO_InitStruct.Pin = LED_RGB_CH_G_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
+    HAL_GPIO_Init(LED_RGB_CH_G_GPIO_Port, &GPIO_InitStruct);
+
     GPIO_InitStruct.Pin = LED_RGB_CH_R_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
