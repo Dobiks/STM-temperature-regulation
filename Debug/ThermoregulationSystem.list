@@ -27,23 +27,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  000200fc  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00019e11  00000000  00000000  0002012c  2**0
+ 12 .debug_info   00019dec  00000000  00000000  0002012c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_abbrev 000035fa  00000000  00000000  00039f3d  2**0
+ 13 .debug_abbrev 000035d1  00000000  00000000  00039f18  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_aranges 000014c8  00000000  00000000  0003d538  2**3
+ 14 .debug_aranges 000014c0  00000000  00000000  0003d4f0  2**3
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_ranges 000012d0  00000000  00000000  0003ea00  2**3
+ 15 .debug_ranges 000012c8  00000000  00000000  0003e9b0  2**3
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_macro  00029141  00000000  00000000  0003fcd0  2**0
+ 16 .debug_macro  00029139  00000000  00000000  0003fc78  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_line   00013622  00000000  00000000  00068e11  2**0
+ 17 .debug_line   00013613  00000000  00000000  00068db1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    000f49d7  00000000  00000000  0007c433  2**0
+ 18 .debug_str    000f49d1  00000000  00000000  0007c3c4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  00170e0a  2**0
+ 19 .comment      0000007b  00000000  00000000  00170d95  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000057e4  00000000  00000000  00170e88  2**2
+ 20 .debug_frame  000057bc  00000000  00000000  00170e10  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -3750,23 +3750,22 @@ int main(void)
   MX_TIM5_Init();
  80019be:	f000 fb4b 	bl	8002058 <MX_TIM5_Init>
   /* USER CODE BEGIN 2 */
-  int8_t BMP280_Status =0;
- 80019c2:	2300      	movs	r3, #0
- 80019c4:	73fb      	strb	r3, [r7, #15]
-  BMP280_Status = BMP280_Init(&bmp280_1);
- 80019c6:	4818      	ldr	r0, [pc, #96]	; (8001a28 <main+0x94>)
- 80019c8:	f7ff fa3e 	bl	8000e48 <BMP280_Init>
- 80019cc:	4603      	mov	r3, r0
- 80019ce:	73fb      	strb	r3, [r7, #15]
+  BMP280_Init(&bmp280_1);
+ 80019c2:	4818      	ldr	r0, [pc, #96]	; (8001a24 <main+0x90>)
+ 80019c4:	f7ff fa40 	bl	8000e48 <BMP280_Init>
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
- 80019d0:	2100      	movs	r1, #0
- 80019d2:	4816      	ldr	r0, [pc, #88]	; (8001a2c <main+0x98>)
- 80019d4:	f003 f8e8 	bl	8004ba8 <HAL_TIM_PWM_Start>
+ 80019c8:	2100      	movs	r1, #0
+ 80019ca:	4817      	ldr	r0, [pc, #92]	; (8001a28 <main+0x94>)
+ 80019cc:	f003 f8ec 	bl	8004ba8 <HAL_TIM_PWM_Start>
   __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 0);
- 80019d8:	4b14      	ldr	r3, [pc, #80]	; (8001a2c <main+0x98>)
- 80019da:	681b      	ldr	r3, [r3, #0]
- 80019dc:	2200      	movs	r2, #0
- 80019de:	635a      	str	r2, [r3, #52]	; 0x34
+ 80019d0:	4b15      	ldr	r3, [pc, #84]	; (8001a28 <main+0x94>)
+ 80019d2:	681b      	ldr	r3, [r3, #0]
+ 80019d4:	2200      	movs	r2, #0
+ 80019d6:	635a      	str	r2, [r3, #52]	; 0x34
+  HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
+ 80019d8:	213c      	movs	r1, #60	; 0x3c
+ 80019da:	4814      	ldr	r0, [pc, #80]	; (8001a2c <main+0x98>)
+ 80019dc:	f003 f9ba 	bl	8004d54 <HAL_TIM_Encoder_Start>
 
   /** LCD with user menu initialization **************************************************/
    LCD_Init(&hlcd1);
@@ -3774,52 +3773,49 @@ int main(void)
  80019e2:	f7ff feba 	bl	800175a <LCD_Init>
 
   /** Rotary quadrature encoder initialization *******************************************/
-    ENC_Init(&henc1);
+   ENC_Init(&henc1);
  80019e6:	4813      	ldr	r0, [pc, #76]	; (8001a34 <main+0xa0>)
  80019e8:	f7ff fb5e 	bl	80010a8 <ENC_Init>
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
   while (1)
   {
+
+
 	  // Read rotary encoder counter
-	  ENC_GetCounter(&henc1);
+	   ENC_GetCounter(&henc1);
  80019ec:	4811      	ldr	r0, [pc, #68]	; (8001a34 <main+0xa0>)
  80019ee:	f7ff fb69 	bl	80010c4 <ENC_GetCounter>
 	  /* Reading the raw data from sensor */
-	  BMP280_Status = bmp280_get_uncomp_data(&bmp280_1_data, &bmp280_1);
- 80019f2:	1d3b      	adds	r3, r7, #4
- 80019f4:	490c      	ldr	r1, [pc, #48]	; (8001a28 <main+0x94>)
- 80019f6:	4618      	mov	r0, r3
- 80019f8:	f7fe ff92 	bl	8000920 <bmp280_get_uncomp_data>
- 80019fc:	4603      	mov	r3, r0
- 80019fe:	73fb      	strb	r3, [r7, #15]
-
+	  bmp280_get_uncomp_data(&bmp280_1_data, &bmp280_1);
+ 80019f2:	f107 0308 	add.w	r3, r7, #8
+ 80019f6:	490b      	ldr	r1, [pc, #44]	; (8001a24 <main+0x90>)
+ 80019f8:	4618      	mov	r0, r3
+ 80019fa:	f7fe ff91 	bl	8000920 <bmp280_get_uncomp_data>
 	  /* Getting the 32 bit compensated temperature */
-	  BMP280_Status = bmp280_get_comp_temp_32bit(&temp32, bmp280_1_data.uncomp_temp, &bmp280_1);
- 8001a00:	6879      	ldr	r1, [r7, #4]
- 8001a02:	463b      	mov	r3, r7
- 8001a04:	4a08      	ldr	r2, [pc, #32]	; (8001a28 <main+0x94>)
- 8001a06:	4618      	mov	r0, r3
- 8001a08:	f7fe ffd9 	bl	80009be <bmp280_get_comp_temp_32bit>
- 8001a0c:	4603      	mov	r3, r0
- 8001a0e:	73fb      	strb	r3, [r7, #15]
-
-	  _LCD_Show(&hlcd1, temp32, temp32, "80");
- 8001a10:	683b      	ldr	r3, [r7, #0]
- 8001a12:	4619      	mov	r1, r3
- 8001a14:	683b      	ldr	r3, [r7, #0]
- 8001a16:	461a      	mov	r2, r3
- 8001a18:	4b07      	ldr	r3, [pc, #28]	; (8001a38 <main+0xa4>)
- 8001a1a:	4805      	ldr	r0, [pc, #20]	; (8001a30 <main+0x9c>)
- 8001a1c:	f7ff ff3c 	bl	8001898 <_LCD_Show>
+	  bmp280_get_comp_temp_32bit(&temp32, bmp280_1_data.uncomp_temp, &bmp280_1);
+ 80019fe:	68b9      	ldr	r1, [r7, #8]
+ 8001a00:	1d3b      	adds	r3, r7, #4
+ 8001a02:	4a08      	ldr	r2, [pc, #32]	; (8001a24 <main+0x90>)
+ 8001a04:	4618      	mov	r0, r3
+ 8001a06:	f7fe ffda 	bl	80009be <bmp280_get_comp_temp_32bit>
+	  // temp destination, temp actual, fan speed percentage
+	  _LCD_Show(&hlcd1, temp32,temp32 , "80");
+ 8001a0a:	687b      	ldr	r3, [r7, #4]
+ 8001a0c:	4619      	mov	r1, r3
+ 8001a0e:	687b      	ldr	r3, [r7, #4]
+ 8001a10:	461a      	mov	r2, r3
+ 8001a12:	4b09      	ldr	r3, [pc, #36]	; (8001a38 <main+0xa4>)
+ 8001a14:	4806      	ldr	r0, [pc, #24]	; (8001a30 <main+0x9c>)
+ 8001a16:	f7ff ff3f 	bl	8001898 <_LCD_Show>
 
 	  HAL_Delay(100);
- 8001a20:	2064      	movs	r0, #100	; 0x64
- 8001a22:	f000 fd93 	bl	800254c <HAL_Delay>
-	  ENC_GetCounter(&henc1);
- 8001a26:	e7e1      	b.n	80019ec <main+0x58>
- 8001a28:	2000000c 	.word	0x2000000c
- 8001a2c:	20000258 	.word	0x20000258
+ 8001a1a:	2064      	movs	r0, #100	; 0x64
+ 8001a1c:	f000 fd96 	bl	800254c <HAL_Delay>
+	   ENC_GetCounter(&henc1);
+ 8001a20:	e7e4      	b.n	80019ec <main+0x58>
+ 8001a22:	bf00      	nop
+ 8001a24:	2000000c 	.word	0x2000000c
+ 8001a28:	20000258 	.word	0x20000258
+ 8001a2c:	200001d8 	.word	0x200001d8
  8001a30:	2000006c 	.word	0x2000006c
  8001a34:	20000040 	.word	0x20000040
  8001a38:	08007144 	.word	0x08007144

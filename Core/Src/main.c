@@ -27,8 +27,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "bmp280.h"
-#include "bmp280_defs.h"
 #include "bmp280_config.h"
 #include "lcd_config.h"
 #include "encoder_config.h"
@@ -57,10 +55,7 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-uint8_t toInt(char c)
-{
-	return c - '0';
-}
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -78,6 +73,7 @@ int main(void)
 	struct bmp280_uncomp_data bmp280_1_data;
 	int32_t temp32;
 	double temp;
+	uint32_t encoder_value; //Wartość z enkodera
 
   /* USER CODE END 1 */
 
@@ -107,31 +103,32 @@ int main(void)
   MX_SPI4_Init();
   MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
-  int8_t BMP280_Status =0;
-  BMP280_Status = BMP280_Init(&bmp280_1);
+  BMP280_Init(&bmp280_1);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
   __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 0);
+  HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
 
   /** LCD with user menu initialization **************************************************/
    LCD_Init(&hlcd1);
 
   /** Rotary quadrature encoder initialization *******************************************/
-    ENC_Init(&henc1);
+   ENC_Init(&henc1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
+
 	  // Read rotary encoder counter
-	  ENC_GetCounter(&henc1);
+	   ENC_GetCounter(&henc1);
 	  /* Reading the raw data from sensor */
-	  BMP280_Status = bmp280_get_uncomp_data(&bmp280_1_data, &bmp280_1);
-
+	  bmp280_get_uncomp_data(&bmp280_1_data, &bmp280_1);
 	  /* Getting the 32 bit compensated temperature */
-	  BMP280_Status = bmp280_get_comp_temp_32bit(&temp32, bmp280_1_data.uncomp_temp, &bmp280_1);
-
-	  _LCD_Show(&hlcd1, temp32, temp32, "80");
+	  bmp280_get_comp_temp_32bit(&temp32, bmp280_1_data.uncomp_temp, &bmp280_1);
+	  // temp destination, temp actual, fan speed percentage
+	  _LCD_Show(&hlcd1, temp32,temp32 , "80");
 
 	  HAL_Delay(100);
     /* USER CODE END WHILE */
