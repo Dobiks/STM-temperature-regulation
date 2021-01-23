@@ -513,4 +513,3 @@ VP_TIM5_VS_ClockSourceINT.Mode=Internal
 VP_TIM5_VS_ClockSourceINT.Signal=TIM5_VS_ClockSourceINT
 board=NUCLEO-F746ZG
 boardIOC=true
-isbadioc=false
