@@ -6,8 +6,8 @@ PE4 CS
 PE5 MISO (SDO)
 PE6 MOSI (SDA)
 //LCD
-VSS +5v
-Vdd 0v
+VSS 0v
+Vdd +5v
 V0 potencjometr
 RS A2 PC3
 RW 0V
