@@ -116,17 +116,18 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
  * @param[in] fan_percent  Null-terminated string
  * @return None
  */
-void _Message_Generate(char* message,int32_t temp32,uint8_t new_value,uint8_t fan_percent){
+void _Message_Generate(char* message,int32_t temp32,uint32_t new_value,int32_t fan_percent){
 	char text[5];
-	sprintf(text,"%d", new_value);
-	strcpy( message, text );
+	strcpy( message, ";" );
+	sprintf(text,"%4d", new_value);
+	strcat( message, text );
 	strcat( message, "," );
-	sprintf(text,"%d", temp32);
+	sprintf(text,"%4d", temp32);
 	strcat( message, text );
 	strcat( message, "," );
 	sprintf(text,"%d", fan_percent);
 	strcat( message, text );
-	strcat( message, "\r\n" );
+	strcat( message, ";\r\n" );
 }
 /* USER CODE END 1 */
 

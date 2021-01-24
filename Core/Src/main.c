@@ -45,7 +45,6 @@
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 char rx_buffer[4];
-
 uint8_t* new_value;
 uint8_t* fan_percent;
 
@@ -90,7 +89,6 @@ int main(void)
 	double temp;
 	char message[20];
 	uint32_t encoder_value; //Wartość z enkodera
-//	uint32_t crcArray[4] = {0x00001111,0x00002222,0x00003333,0x00004444};
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -135,7 +133,6 @@ int main(void)
 
   /** Rotary quadrature encoder initialization *******************************************/
    ENC_Init(&henc1);
-  // crcVal = HAL_CRC_Calculate(&hcrc, crcArray,4);
 
   /* USER CODE END 2 */
 
