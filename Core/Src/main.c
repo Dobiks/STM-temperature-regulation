@@ -112,6 +112,8 @@ int main(void)
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
   __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, 0);
 
+  HAL_UART_Receive_IT(&huart3, (uint8_t*)rx_buffer, 4);
+
   /** LCD with user menu initialization **************************************************/
    LCD_Init(&hlcd1);
 
