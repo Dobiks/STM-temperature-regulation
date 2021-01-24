@@ -136,6 +136,16 @@ int main(void)
 	  // temp destination, temp actual, fan speed percentage
 	  _LCD_Show(&hlcd1, temp32,temp32 , "80");
 
+
+	 // temporary
+	  HAL_UART_Transmit(&huart3,"Temperatura obecna: ",20, 100);
+		   char buffer[16];
+		   HAL_UART_Transmit(&huart3, (uint8_t*)buffer, sprintf(buffer, "%d", (int)temp32), 100);
+		   HAL_UART_Transmit(&huart3," Temperatura zadana: ",20, 100);
+		   HAL_UART_Transmit(&huart3, (uint8_t*)buffer, sprintf(buffer, "%d", (int)temp32), 100);
+		   HAL_UART_Transmit(&huart3," Wentylator: ",20, 100);
+		   HAL_UART_Transmit(&huart3, (uint8_t*)buffer, sprintf(buffer, "%d", (int)temp32), 100);
+		   HAL_UART_Transmit(&huart3,"%\r\n",4, 100);
 	  HAL_Delay(100);
     /* USER CODE END WHILE */
 
