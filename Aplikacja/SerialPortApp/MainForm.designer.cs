@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.baudRateLabel = new System.Windows.Forms.Label();
             this.dataBitsLabel = new System.Windows.Forms.Label();
             this.parityLabel = new System.Windows.Forms.Label();
@@ -71,7 +71,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.SetButton = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -420,6 +420,7 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Temperature";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // textBox3
             // 
@@ -428,6 +429,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(42, 26);
             this.textBox3.TabIndex = 7;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // label5
             // 
@@ -473,7 +475,7 @@
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.SetButton);
             this.groupBox1.Controls.Add(this.trackBar1);
             this.groupBox1.Location = new System.Drawing.Point(9, 12);
             this.groupBox1.Name = "groupBox1";
@@ -488,6 +490,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(42, 20);
             this.textBox1.TabIndex = 4;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label2
             // 
@@ -507,21 +510,26 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Temperature:";
             // 
-            // button1
+            // SetButton
             // 
-            this.button1.Location = new System.Drawing.Point(415, 51);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 42);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Set";
-            this.button1.UseVisualStyleBackColor = true;
+            this.SetButton.Location = new System.Drawing.Point(415, 51);
+            this.SetButton.Name = "SetButton";
+            this.SetButton.Size = new System.Drawing.Size(83, 42);
+            this.SetButton.TabIndex = 1;
+            this.SetButton.Text = "Set";
+            this.SetButton.UseVisualStyleBackColor = true;
+            this.SetButton.Click += new System.EventHandler(this.SetButton_Click);
             // 
             // trackBar1
             // 
             this.trackBar1.Location = new System.Drawing.Point(6, 51);
+            this.trackBar1.Maximum = 2000;
+            this.trackBar1.Minimum = 1000;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(403, 45);
             this.trackBar1.TabIndex = 0;
+            this.trackBar1.Value = 1000;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // label6
             // 
@@ -553,22 +561,22 @@
             // 
             // chart1
             // 
-            chartArea2.AxisX.Interval = 10D;
-            chartArea2.AxisX.Maximum = 100D;
-            chartArea2.AxisX.Minimum = 0D;
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Alignment = System.Drawing.StringAlignment.Center;
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea8.AxisX.Interval = 10D;
+            chartArea8.AxisX.Maximum = 100D;
+            chartArea8.AxisX.Minimum = 0D;
+            chartArea8.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea8);
+            legend8.Alignment = System.Drawing.StringAlignment.Center;
+            legend8.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend8.Name = "Legend1";
+            this.chart1.Legends.Add(legend8);
             this.chart1.Location = new System.Drawing.Point(8, 304);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series8.Legend = "Legend1";
+            series8.Name = "Series1";
+            this.chart1.Series.Add(series8);
             this.chart1.Size = new System.Drawing.Size(505, 127);
             this.chart1.TabIndex = 10;
             this.chart1.Text = "chart1";
@@ -591,7 +599,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "C# Serial Port App";
+            this.Text = "][";
             ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).EndInit();
             this.groupBox_settings.ResumeLayout(false);
             this.groupBox_settings.PerformLayout();
@@ -657,7 +665,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button SetButton;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;

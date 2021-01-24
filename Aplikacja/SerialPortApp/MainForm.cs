@@ -232,12 +232,43 @@ namespace SerialPortApp
 
         #endregion
 
+        UInt16 _dacValue;
+
         private void label4_Click(object sender, EventArgs e)
         {
 
         }
 
         private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            TrackBar tb = (TrackBar)sender;
+            _dacValue = (UInt16)tb.Value;
+            float disp = _dacValue;
+            disp = disp / 100;
+            textBox1.Text = disp.ToString("0.00");
+        }
+
+        private void SetButton_Click(object sender, EventArgs e)
+        {
+            _spManager.Send(_dacValue.ToString(""));
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+           // string hex = Encoding.ASCII.GetString(e.Data);
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
