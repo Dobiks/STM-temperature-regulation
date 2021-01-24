@@ -107,7 +107,18 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
-
+void _Message_Generate(char* message,int32_t temp32,int32_t new_value,int32_t fan_percent){
+	char text[5];
+	sprintf(text,"%d", new_value);
+	strcpy( message, text );
+	strcat( message, "," );
+	sprintf(text,"%d", temp32);
+	strcat( message, text );
+	strcat( message, "," );
+	sprintf(text,"%d", fan_percent);
+	strcat( message, text );
+	strcat( message, "\r\n" );
+}
 /* USER CODE END 1 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

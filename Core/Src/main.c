@@ -75,7 +75,7 @@ HAL_UART_Receive_IT(&huart3, (uint8_t*)rx_buffer, 4);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+uint32_t crcVal;
 /* USER CODE END 0 */
 
 /**
@@ -88,8 +88,9 @@ int main(void)
 	struct bmp280_uncomp_data bmp280_1_data;
 	int32_t temp32;
 	double temp;
+	char message[20];
 	uint32_t encoder_value; //Wartość z enkodera
-
+//	uint32_t crcArray[4] = {0x00001111,0x00002222,0x00003333,0x00004444};
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -134,6 +135,8 @@ int main(void)
 
   /** Rotary quadrature encoder initialization *******************************************/
    ENC_Init(&henc1);
+  // crcVal = HAL_CRC_Calculate(&hcrc, crcArray,4);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -154,17 +157,20 @@ int main(void)
 	  // temp destination, temp actual, fan speed percentage
 	  _LCD_Show(&hlcd1, new_value,temp32 ,fan_percent);
 
-		char text[5];
-		char message[20];
-		sprintf(text,"%d", new_value);
-		strcpy( message, text );
-		strcat( message, "," );
-		sprintf(text,"%d", temp32);
-		strcat( message, text );
-		strcat( message, "," );
-		sprintf(text,"%d", fan_percent);
-		strcat( message, text );
-		strcat( message, "\r\n" );
+//		char text[5];
+//		char message[20];
+//		sprintf(text,"%d", new_value);
+//		strcpy( message, text );
+//		strcat( message, "," );
+//		sprintf(text,"%d", temp32);
+//		strcat( message, text );
+//		strcat( message, "," );
+//		sprintf(text,"%d", fan_percent);
+//		strcat( message, text );
+//		strcat( message, "\r\n" );
+
+	   _Message_Generate(&message,temp32, new_value, fan_percent);
+
 		HAL_UART_Transmit(&huart3, (uint8_t*)message,  strlen(message), 1000);
 
 	  HAL_Delay(100);
