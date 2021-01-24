@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 main.c:60:9:toInt	16	static
 main.c:75:5:main	24	static
 main.c:152:6:SystemClock_Config	216	static
 main.c:216:6:Error_Handler	4	static
+=======
+main.c:70:5:main	24	static
+main.c:145:6:SystemClock_Config	216	static
+main.c:209:6:Error_Handler	4	static
+>>>>>>> 5c265f05696d4e535762c079a0bbefde768a2b19

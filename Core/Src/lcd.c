@@ -253,15 +253,19 @@ void _LCD_Show(LCD_HandleTypeDef* hlcd, char* act_temp, char* dest_temp,char* fa
 	LCD_SetCursor(hlcd, 0, 0);
     LCD_printf(hlcd,"Tz: %03d", act_temp);
 
-    if(fan_blink==1){
+    if(fan_blink<=4){
     	LCD_SetCursor(hlcd, 0, 14);
     	LCD_printf(hlcd,"*");
-    	fan_blink=0;
+    	fan_blink++;
     }
-    else{
+    else if(fan_blink>4 && fan_blink<=8){
     	LCD_SetCursor(hlcd, 0, 14);
     	LCD_printf(hlcd," ");
-    	fan_blink=1;
+    	fan_blink++;
+    }
+    else{
+
+    	fan_blink=0;
     }
 
     LCD_SetCursor(hlcd, 1, 0);
