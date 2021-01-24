@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.baudRateLabel = new System.Windows.Forms.Label();
             this.dataBitsLabel = new System.Windows.Forms.Label();
             this.parityLabel = new System.Windows.Forms.Label();
@@ -54,8 +57,28 @@
             this.error_label = new System.Windows.Forms.Label();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabSerialPort = new System.Windows.Forms.TabPage();
-            this.tabInput = new System.Windows.Forms.TabPage();
+            this.tabLogs = new System.Windows.Forms.TabPage();
             this.tabControl = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.eventLog1 = new System.Diagnostics.EventLog();
+            this.eventLog2 = new System.Diagnostics.EventLog();
             ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).BeginInit();
             this.groupBox_settings.SuspendLayout();
             this.groupBox_receive.SuspendLayout();
@@ -63,55 +86,58 @@
             this.groupBox_exceptions.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabSerialPort.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventLog2)).BeginInit();
             this.SuspendLayout();
             // 
             // baudRateLabel
             // 
             this.baudRateLabel.AutoSize = true;
-            this.baudRateLabel.Location = new System.Drawing.Point(13, 73);
-            this.baudRateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.baudRateLabel.Location = new System.Drawing.Point(10, 59);
             this.baudRateLabel.Name = "baudRateLabel";
-            this.baudRateLabel.Size = new System.Drawing.Size(79, 17);
+            this.baudRateLabel.Size = new System.Drawing.Size(61, 13);
             this.baudRateLabel.TabIndex = 1;
             this.baudRateLabel.Text = "Baud Rate:";
             // 
             // dataBitsLabel
             // 
             this.dataBitsLabel.AutoSize = true;
-            this.dataBitsLabel.Location = new System.Drawing.Point(13, 106);
-            this.dataBitsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.dataBitsLabel.Location = new System.Drawing.Point(10, 86);
             this.dataBitsLabel.Name = "dataBitsLabel";
-            this.dataBitsLabel.Size = new System.Drawing.Size(69, 17);
+            this.dataBitsLabel.Size = new System.Drawing.Size(53, 13);
             this.dataBitsLabel.TabIndex = 3;
             this.dataBitsLabel.Text = "Data Bits:";
             // 
             // parityLabel
             // 
             this.parityLabel.AutoSize = true;
-            this.parityLabel.Location = new System.Drawing.Point(13, 139);
-            this.parityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.parityLabel.Location = new System.Drawing.Point(10, 113);
             this.parityLabel.Name = "parityLabel";
-            this.parityLabel.Size = new System.Drawing.Size(48, 17);
+            this.parityLabel.Size = new System.Drawing.Size(36, 13);
             this.parityLabel.TabIndex = 5;
             this.parityLabel.Text = "Parity:";
             // 
             // portNameLabel
             // 
             this.portNameLabel.AutoSize = true;
-            this.portNameLabel.Location = new System.Drawing.Point(13, 39);
-            this.portNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.portNameLabel.Location = new System.Drawing.Point(10, 32);
             this.portNameLabel.Name = "portNameLabel";
-            this.portNameLabel.Size = new System.Drawing.Size(79, 17);
+            this.portNameLabel.Size = new System.Drawing.Size(60, 13);
             this.portNameLabel.TabIndex = 7;
             this.portNameLabel.Text = "Port Name:";
             // 
             // stopBitsLabel
             // 
             this.stopBitsLabel.AutoSize = true;
-            this.stopBitsLabel.Location = new System.Drawing.Point(13, 172);
-            this.stopBitsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.stopBitsLabel.Location = new System.Drawing.Point(10, 140);
             this.stopBitsLabel.Name = "stopBitsLabel";
-            this.stopBitsLabel.Size = new System.Drawing.Size(68, 17);
+            this.stopBitsLabel.Size = new System.Drawing.Size(52, 13);
             this.stopBitsLabel.TabIndex = 9;
             this.stopBitsLabel.Text = "Stop Bits:";
             // 
@@ -119,50 +145,45 @@
             // 
             this.baudRateComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.serialSettingsBindingSource, "BaudRate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.baudRateComboBox.FormattingEnabled = true;
-            this.baudRateComboBox.Location = new System.Drawing.Point(103, 69);
-            this.baudRateComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.baudRateComboBox.Location = new System.Drawing.Point(77, 56);
             this.baudRateComboBox.Name = "baudRateComboBox";
-            this.baudRateComboBox.Size = new System.Drawing.Size(203, 24);
+            this.baudRateComboBox.Size = new System.Drawing.Size(153, 21);
             this.baudRateComboBox.TabIndex = 2;
             // 
             // dataBitsComboBox
             // 
             this.dataBitsComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.serialSettingsBindingSource, "DataBits", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dataBitsComboBox.FormattingEnabled = true;
-            this.dataBitsComboBox.Location = new System.Drawing.Point(103, 102);
-            this.dataBitsComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.dataBitsComboBox.Location = new System.Drawing.Point(77, 83);
             this.dataBitsComboBox.Name = "dataBitsComboBox";
-            this.dataBitsComboBox.Size = new System.Drawing.Size(203, 24);
+            this.dataBitsComboBox.Size = new System.Drawing.Size(153, 21);
             this.dataBitsComboBox.TabIndex = 4;
             // 
             // parityComboBox
             // 
             this.parityComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.serialSettingsBindingSource, "Parity", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.parityComboBox.FormattingEnabled = true;
-            this.parityComboBox.Location = new System.Drawing.Point(103, 135);
-            this.parityComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.parityComboBox.Location = new System.Drawing.Point(77, 110);
             this.parityComboBox.Name = "parityComboBox";
-            this.parityComboBox.Size = new System.Drawing.Size(203, 24);
+            this.parityComboBox.Size = new System.Drawing.Size(153, 21);
             this.parityComboBox.TabIndex = 6;
             // 
             // portNameComboBox
             // 
             this.portNameComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.serialSettingsBindingSource, "PortName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.portNameComboBox.FormattingEnabled = true;
-            this.portNameComboBox.Location = new System.Drawing.Point(103, 36);
-            this.portNameComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.portNameComboBox.Location = new System.Drawing.Point(77, 29);
             this.portNameComboBox.Name = "portNameComboBox";
-            this.portNameComboBox.Size = new System.Drawing.Size(203, 24);
+            this.portNameComboBox.Size = new System.Drawing.Size(153, 21);
             this.portNameComboBox.TabIndex = 8;
             // 
             // stopBitsComboBox
             // 
             this.stopBitsComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.serialSettingsBindingSource, "StopBits", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.stopBitsComboBox.FormattingEnabled = true;
-            this.stopBitsComboBox.Location = new System.Drawing.Point(103, 169);
-            this.stopBitsComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.stopBitsComboBox.Location = new System.Drawing.Point(77, 137);
             this.stopBitsComboBox.Name = "stopBitsComboBox";
-            this.stopBitsComboBox.Size = new System.Drawing.Size(203, 24);
+            this.stopBitsComboBox.Size = new System.Drawing.Size(153, 21);
             this.stopBitsComboBox.TabIndex = 10;
             // 
             // groupBox_settings
@@ -180,21 +201,18 @@
             this.groupBox_settings.Controls.Add(this.portNameLabel);
             this.groupBox_settings.Controls.Add(this.parityLabel);
             this.groupBox_settings.Controls.Add(this.parityComboBox);
-            this.groupBox_settings.Location = new System.Drawing.Point(11, 7);
-            this.groupBox_settings.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox_settings.Location = new System.Drawing.Point(8, 6);
             this.groupBox_settings.Name = "groupBox_settings";
-            this.groupBox_settings.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_settings.Size = new System.Drawing.Size(325, 246);
+            this.groupBox_settings.Size = new System.Drawing.Size(244, 200);
             this.groupBox_settings.TabIndex = 11;
             this.groupBox_settings.TabStop = false;
             this.groupBox_settings.Text = "Serial Port Settings";
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(209, 202);
-            this.btnStop.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStop.Location = new System.Drawing.Point(157, 164);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(97, 28);
+            this.btnStop.Size = new System.Drawing.Size(73, 23);
             this.btnStop.TabIndex = 12;
             this.btnStop.Text = "Disconnect";
             this.btnStop.UseVisualStyleBackColor = true;
@@ -202,10 +220,9 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(103, 202);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStart.Location = new System.Drawing.Point(77, 164);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(99, 28);
+            this.btnStart.Size = new System.Drawing.Size(74, 23);
             this.btnStart.TabIndex = 12;
             this.btnStart.Text = "Connect";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -213,12 +230,11 @@
             // 
             // tbDataReceive
             // 
-            this.tbDataReceive.Location = new System.Drawing.Point(15, 23);
-            this.tbDataReceive.Margin = new System.Windows.Forms.Padding(4);
+            this.tbDataReceive.Location = new System.Drawing.Point(11, 19);
             this.tbDataReceive.Multiline = true;
             this.tbDataReceive.Name = "tbDataReceive";
             this.tbDataReceive.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbDataReceive.Size = new System.Drawing.Size(658, 118);
+            this.tbDataReceive.Size = new System.Drawing.Size(494, 97);
             this.tbDataReceive.TabIndex = 13;
             // 
             // groupBox_receive
@@ -229,11 +245,9 @@
             this.groupBox_receive.Controls.Add(this.rxEnableCheckBox);
             this.groupBox_receive.Controls.Add(this.btnClear);
             this.groupBox_receive.Controls.Add(this.tbDataReceive);
-            this.groupBox_receive.Location = new System.Drawing.Point(12, 261);
-            this.groupBox_receive.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox_receive.Location = new System.Drawing.Point(9, 212);
             this.groupBox_receive.Name = "groupBox_receive";
-            this.groupBox_receive.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_receive.Size = new System.Drawing.Size(681, 185);
+            this.groupBox_receive.Size = new System.Drawing.Size(511, 150);
             this.groupBox_receive.TabIndex = 14;
             this.groupBox_receive.TabStop = false;
             this.groupBox_receive.Text = "Receive";
@@ -243,9 +257,10 @@
             this.rxEnableCheckBox.AutoSize = true;
             this.rxEnableCheckBox.Checked = true;
             this.rxEnableCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.rxEnableCheckBox.Location = new System.Drawing.Point(15, 149);
+            this.rxEnableCheckBox.Location = new System.Drawing.Point(11, 121);
+            this.rxEnableCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.rxEnableCheckBox.Name = "rxEnableCheckBox";
-            this.rxEnableCheckBox.Size = new System.Drawing.Size(94, 21);
+            this.rxEnableCheckBox.Size = new System.Drawing.Size(75, 17);
             this.rxEnableCheckBox.TabIndex = 15;
             this.rxEnableCheckBox.Text = "Rx Enable";
             this.rxEnableCheckBox.UseVisualStyleBackColor = true;
@@ -253,10 +268,9 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(560, 149);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(4);
+            this.btnClear.Location = new System.Drawing.Point(420, 121);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(113, 28);
+            this.btnClear.Size = new System.Drawing.Size(85, 23);
             this.btnClear.TabIndex = 14;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -269,21 +283,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_transmit.Controls.Add(this.btnSend);
             this.groupBox_transmit.Controls.Add(this.tbDataTransmit);
-            this.groupBox_transmit.Location = new System.Drawing.Point(11, 454);
-            this.groupBox_transmit.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox_transmit.Location = new System.Drawing.Point(8, 369);
             this.groupBox_transmit.Name = "groupBox_transmit";
-            this.groupBox_transmit.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_transmit.Size = new System.Drawing.Size(681, 89);
+            this.groupBox_transmit.Size = new System.Drawing.Size(511, 72);
             this.groupBox_transmit.TabIndex = 15;
             this.groupBox_transmit.TabStop = false;
             this.groupBox_transmit.Text = "Transmit";
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(560, 53);
-            this.btnSend.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSend.Location = new System.Drawing.Point(420, 43);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(113, 28);
+            this.btnSend.Size = new System.Drawing.Size(85, 23);
             this.btnSend.TabIndex = 1;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -291,10 +302,9 @@
             // 
             // tbDataTransmit
             // 
-            this.tbDataTransmit.Location = new System.Drawing.Point(16, 23);
-            this.tbDataTransmit.Margin = new System.Windows.Forms.Padding(4);
+            this.tbDataTransmit.Location = new System.Drawing.Point(12, 19);
             this.tbDataTransmit.Name = "tbDataTransmit";
-            this.tbDataTransmit.Size = new System.Drawing.Size(657, 22);
+            this.tbDataTransmit.Size = new System.Drawing.Size(494, 20);
             this.tbDataTransmit.TabIndex = 0;
             // 
             // groupBox_exceptions
@@ -303,11 +313,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_exceptions.Controls.Add(this.error_label);
-            this.groupBox_exceptions.Location = new System.Drawing.Point(344, 7);
-            this.groupBox_exceptions.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox_exceptions.Location = new System.Drawing.Point(258, 6);
             this.groupBox_exceptions.Name = "groupBox_exceptions";
-            this.groupBox_exceptions.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_exceptions.Size = new System.Drawing.Size(348, 246);
+            this.groupBox_exceptions.Size = new System.Drawing.Size(261, 200);
             this.groupBox_exceptions.TabIndex = 16;
             this.groupBox_exceptions.TabStop = false;
             this.groupBox_exceptions.Text = "Exceptions";
@@ -317,24 +325,22 @@
             this.error_label.Dock = System.Windows.Forms.DockStyle.Fill;
             this.error_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.error_label.ForeColor = System.Drawing.Color.Red;
-            this.error_label.Location = new System.Drawing.Point(4, 19);
-            this.error_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.error_label.Location = new System.Drawing.Point(3, 16);
             this.error_label.Name = "error_label";
-            this.error_label.Size = new System.Drawing.Size(340, 223);
+            this.error_label.Size = new System.Drawing.Size(255, 181);
             this.error_label.TabIndex = 0;
             this.error_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabMain
             // 
             this.tabMain.Controls.Add(this.tabSerialPort);
-            this.tabMain.Controls.Add(this.tabInput);
+            this.tabMain.Controls.Add(this.tabLogs);
             this.tabMain.Controls.Add(this.tabControl);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMain.Location = new System.Drawing.Point(0, 0);
-            this.tabMain.Margin = new System.Windows.Forms.Padding(4);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(709, 581);
+            this.tabMain.Size = new System.Drawing.Size(532, 472);
             this.tabMain.TabIndex = 17;
             // 
             // tabSerialPort
@@ -344,43 +350,245 @@
             this.tabSerialPort.Controls.Add(this.groupBox_exceptions);
             this.tabSerialPort.Controls.Add(this.groupBox_transmit);
             this.tabSerialPort.Controls.Add(this.groupBox_receive);
-            this.tabSerialPort.Location = new System.Drawing.Point(4, 25);
-            this.tabSerialPort.Margin = new System.Windows.Forms.Padding(4);
+            this.tabSerialPort.Location = new System.Drawing.Point(4, 22);
             this.tabSerialPort.Name = "tabSerialPort";
-            this.tabSerialPort.Padding = new System.Windows.Forms.Padding(4);
-            this.tabSerialPort.Size = new System.Drawing.Size(701, 552);
+            this.tabSerialPort.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSerialPort.Size = new System.Drawing.Size(524, 446);
             this.tabSerialPort.TabIndex = 0;
             this.tabSerialPort.Text = "Serial Port";
             // 
-            // tabInput
+            // tabLogs
             // 
-            this.tabInput.Location = new System.Drawing.Point(4, 25);
-            this.tabInput.Name = "tabInput";
-            this.tabInput.Padding = new System.Windows.Forms.Padding(3);
-            this.tabInput.Size = new System.Drawing.Size(701, 552);
-            this.tabInput.TabIndex = 1;
-            this.tabInput.Text = "Input plot";
-            this.tabInput.UseVisualStyleBackColor = true;
+            this.tabLogs.Location = new System.Drawing.Point(4, 22);
+            this.tabLogs.Margin = new System.Windows.Forms.Padding(2);
+            this.tabLogs.Name = "tabLogs";
+            this.tabLogs.Padding = new System.Windows.Forms.Padding(2);
+            this.tabLogs.Size = new System.Drawing.Size(524, 446);
+            this.tabLogs.TabIndex = 1;
+            this.tabLogs.Text = "Logs";
+            this.tabLogs.UseVisualStyleBackColor = true;
             // 
             // tabControl
             // 
-            this.tabControl.Location = new System.Drawing.Point(4, 25);
+            this.tabControl.Controls.Add(this.chart1);
+            this.tabControl.Controls.Add(this.groupBox3);
+            this.tabControl.Controls.Add(this.groupBox2);
+            this.tabControl.Controls.Add(this.groupBox1);
+            this.tabControl.Location = new System.Drawing.Point(4, 22);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl.Name = "tabControl";
-            this.tabControl.Padding = new System.Windows.Forms.Padding(3);
-            this.tabControl.Size = new System.Drawing.Size(701, 552);
+            this.tabControl.Padding = new System.Windows.Forms.Padding(2);
+            this.tabControl.Size = new System.Drawing.Size(524, 446);
             this.tabControl.TabIndex = 2;
             this.tabControl.Text = "Output control";
             this.tabControl.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Location = new System.Drawing.Point(8, 228);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(505, 70);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Fan";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label7.Location = new System.Drawing.Point(38, 28);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 20);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Fan speed:";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Location = new System.Drawing.Point(9, 120);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(505, 102);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Temperature";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox3.Location = new System.Drawing.Point(199, 20);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(42, 26);
+            this.textBox3.TabIndex = 7;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(247, 52);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(25, 20);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "°C";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox2.Location = new System.Drawing.Point(199, 49);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(42, 26);
+            this.textBox2.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(36, 52);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(157, 20);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Current temperature:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(37, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(150, 20);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Target temperature:";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.trackBar1);
+            this.groupBox1.Location = new System.Drawing.Point(9, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(505, 102);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Set Temperature";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(211, 22);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(42, 20);
+            this.textBox1.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(259, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(18, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "°C";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(135, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Temperature:";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(415, 51);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(83, 42);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Set";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(6, 51);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(403, 45);
+            this.trackBar1.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.Location = new System.Drawing.Point(247, 23);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(25, 20);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "°C";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox4.Location = new System.Drawing.Point(139, 25);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(42, 26);
+            this.textBox4.TabIndex = 8;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label8.Location = new System.Drawing.Point(189, 28);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(23, 20);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "%";
+            // 
+            // chart1
+            // 
+            chartArea2.AxisX.Interval = 10D;
+            chartArea2.AxisX.Maximum = 100D;
+            chartArea2.AxisX.Minimum = 0D;
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Alignment = System.Drawing.StringAlignment.Center;
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
+            this.chart1.Location = new System.Drawing.Point(8, 304);
+            this.chart1.Name = "chart1";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
+            this.chart1.Size = new System.Drawing.Size(505, 127);
+            this.chart1.TabIndex = 10;
+            this.chart1.Text = "chart1";
+            // 
+            // eventLog1
+            // 
+            this.eventLog1.SynchronizingObject = this;
+            // 
+            // eventLog2
+            // 
+            this.eventLog2.SynchronizingObject = this;
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(709, 581);
+            this.ClientSize = new System.Drawing.Size(532, 472);
             this.Controls.Add(this.tabMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "C# Serial Port App";
@@ -394,6 +602,17 @@
             this.groupBox_exceptions.ResumeLayout(false);
             this.tabMain.ResumeLayout(false);
             this.tabSerialPort.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventLog2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -424,9 +643,29 @@
         private System.Windows.Forms.TabControl tabMain;
         private System.Windows.Forms.TabPage tabSerialPort;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.TabPage tabInput;
-        private System.Windows.Forms.TabPage tabControl;
+        private System.Windows.Forms.TabPage tabLogs;
         private System.Windows.Forms.CheckBox rxEnableCheckBox;
+        private System.Windows.Forms.TabPage tabControl;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label6;
+        private System.Diagnostics.EventLog eventLog1;
+        private System.Diagnostics.EventLog eventLog2;
     }
 }
 
