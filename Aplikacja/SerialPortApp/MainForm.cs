@@ -73,6 +73,11 @@ namespace SerialPortApp
 
             tbDataReceive.AppendText(str);
             tbDataReceive.ScrollToCaret();
+            if (str.Length > 8 && str[4] == ',')
+            {
+                ValDisp(str.Split('\r')[0]);
+            }
+
         }
 
         /*
@@ -233,6 +238,8 @@ namespace SerialPortApp
         #endregion
 
         UInt16 _dacValue;
+        float maxTemp = 20;
+        float minTemp = 1;
 
         private void label4_Click(object sender, EventArgs e)
         {
@@ -258,9 +265,34 @@ namespace SerialPortApp
             _spManager.Send(_dacValue.ToString(""));
         }
 
+        private void ValDisp(string str)
+        {
+            string[] data = str.Split(',');
+            data[2] = data[2].Replace("\r", String.Empty);
+            TargetTemperatureDisplay(data[0]);
+            CurrentTemperatureDisplay(data[1]);
+            FanSpeedDisplay(data[2]);
+        }
+
+        private void TargetTemperatureDisplay(string str)
+        {
+            str = str.Insert(str.Length - 2, ",");
+            targetTempBox.Text = str;
+        }
+        private void CurrentTemperatureDisplay(string str)
+        {
+            float temp = Convert.ToSingle(str);
+            temp = temp / 100;
+            currentTempBox.Text = temp.ToString();
+        }
+
+        private void FanSpeedDisplay(string str)
+        {
+            fanSpeedbox.Text = str;
+        }
+
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-           // string hex = Encoding.ASCII.GetString(e.Data);
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
@@ -270,7 +302,17 @@ namespace SerialPortApp
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            //test
+
+        }
+
+        private void tabControl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbDataReceive_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.baudRateLabel = new System.Windows.Forms.Label();
             this.dataBitsLabel = new System.Windows.Forms.Label();
             this.parityLabel = new System.Windows.Forms.Label();
@@ -59,12 +59,16 @@
             this.tabSerialPort = new System.Windows.Forms.TabPage();
             this.tabLogs = new System.Windows.Forms.TabPage();
             this.tabControl = new System.Windows.Forms.TabPage();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.fanSpeedbox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.targetTempBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.currentTempBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -73,10 +77,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SetButton = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.eventLog1 = new System.Diagnostics.EventLog();
             this.eventLog2 = new System.Diagnostics.EventLog();
             ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).BeginInit();
@@ -87,11 +87,11 @@
             this.tabMain.SuspendLayout();
             this.tabSerialPort.SuspendLayout();
             this.tabControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog2)).BeginInit();
             this.SuspendLayout();
@@ -236,6 +236,7 @@
             this.tbDataReceive.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbDataReceive.Size = new System.Drawing.Size(494, 97);
             this.tbDataReceive.TabIndex = 13;
+            this.tbDataReceive.TextChanged += new System.EventHandler(this.tbDataReceive_TextChanged);
             // 
             // groupBox_receive
             // 
@@ -382,11 +383,34 @@
             this.tabControl.TabIndex = 2;
             this.tabControl.Text = "Output control";
             this.tabControl.UseVisualStyleBackColor = true;
+            this.tabControl.Click += new System.EventHandler(this.tabControl_Click);
+            // 
+            // chart1
+            // 
+            chartArea2.AxisX.Interval = 10D;
+            chartArea2.AxisX.Maximum = 100D;
+            chartArea2.AxisX.Minimum = 0D;
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Alignment = System.Drawing.StringAlignment.Center;
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
+            this.chart1.Location = new System.Drawing.Point(8, 304);
+            this.chart1.Name = "chart1";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
+            this.chart1.Size = new System.Drawing.Size(505, 127);
+            this.chart1.TabIndex = 10;
+            this.chart1.Text = "chart1";
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.fanSpeedbox);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Location = new System.Drawing.Point(8, 228);
             this.groupBox3.Name = "groupBox3";
@@ -394,6 +418,24 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Fan";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label8.Location = new System.Drawing.Point(189, 28);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(23, 20);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "%";
+            // 
+            // fanSpeedbox
+            // 
+            this.fanSpeedbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.fanSpeedbox.Location = new System.Drawing.Point(139, 25);
+            this.fanSpeedbox.Name = "fanSpeedbox";
+            this.fanSpeedbox.Size = new System.Drawing.Size(42, 26);
+            this.fanSpeedbox.TabIndex = 8;
             // 
             // label7
             // 
@@ -409,9 +451,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.targetTempBox);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.currentTempBox);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Location = new System.Drawing.Point(9, 120);
@@ -422,38 +464,48 @@
             this.groupBox2.Text = "Temperature";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
-            // textBox3
+            // label6
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox3.Location = new System.Drawing.Point(199, 20);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(42, 26);
-            this.textBox3.TabIndex = 7;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.Location = new System.Drawing.Point(259, 26);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(25, 20);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "°C";
+            // 
+            // targetTempBox
+            // 
+            this.targetTempBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.targetTempBox.Location = new System.Drawing.Point(192, 23);
+            this.targetTempBox.Name = "targetTempBox";
+            this.targetTempBox.Size = new System.Drawing.Size(61, 26);
+            this.targetTempBox.TabIndex = 7;
+            this.targetTempBox.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(247, 52);
+            this.label5.Location = new System.Drawing.Point(258, 58);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(25, 20);
             this.label5.TabIndex = 6;
             this.label5.Text = "°C";
             // 
-            // textBox2
+            // currentTempBox
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox2.Location = new System.Drawing.Point(199, 49);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(42, 26);
-            this.textBox2.TabIndex = 5;
+            this.currentTempBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.currentTempBox.Location = new System.Drawing.Point(193, 55);
+            this.currentTempBox.Name = "currentTempBox";
+            this.currentTempBox.Size = new System.Drawing.Size(60, 26);
+            this.currentTempBox.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(36, 52);
+            this.label4.Location = new System.Drawing.Point(37, 58);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(157, 20);
             this.label4.TabIndex = 4;
@@ -531,56 +583,6 @@
             this.trackBar1.Value = 1000;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(247, 23);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(25, 20);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "°C";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox4.Location = new System.Drawing.Point(139, 25);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(42, 26);
-            this.textBox4.TabIndex = 8;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.Location = new System.Drawing.Point(189, 28);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(23, 20);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "%";
-            // 
-            // chart1
-            // 
-            chartArea8.AxisX.Interval = 10D;
-            chartArea8.AxisX.Maximum = 100D;
-            chartArea8.AxisX.Minimum = 0D;
-            chartArea8.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea8);
-            legend8.Alignment = System.Drawing.StringAlignment.Center;
-            legend8.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend8.Name = "Legend1";
-            this.chart1.Legends.Add(legend8);
-            this.chart1.Location = new System.Drawing.Point(8, 304);
-            this.chart1.Name = "chart1";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.chart1.Series.Add(series8);
-            this.chart1.Size = new System.Drawing.Size(505, 127);
-            this.chart1.TabIndex = 10;
-            this.chart1.Text = "chart1";
-            // 
             // eventLog1
             // 
             this.eventLog1.SynchronizingObject = this;
@@ -599,7 +601,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "][";
+            this.Text = "UkladRegulacjiTemperaturySTM";
             ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).EndInit();
             this.groupBox_settings.ResumeLayout(false);
             this.groupBox_settings.PerformLayout();
@@ -611,6 +613,7 @@
             this.tabMain.ResumeLayout(false);
             this.tabSerialPort.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -618,7 +621,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog2)).EndInit();
             this.ResumeLayout(false);
@@ -656,9 +658,9 @@
         private System.Windows.Forms.TabPage tabControl;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox targetTempBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox currentTempBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -670,7 +672,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox fanSpeedbox;
         private System.Windows.Forms.Label label6;
         private System.Diagnostics.EventLog eventLog1;
         private System.Diagnostics.EventLog eventLog2;
