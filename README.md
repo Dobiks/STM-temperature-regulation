@@ -1,10 +1,17 @@
 # UkladRegulacjiTemperaturySTM
-PINOUT
+----------PINOUT---------
 ///BMP280
 PE2 SCK
 PE4 CS
 PE5 MISO (SDO)
 PE6 MOSI (SDA)
+
+//Fan PWM
+PC7
+
+///Heater PWM
+PB4 
+
 //LCD
 VSS 0v
 Vdd +5v
@@ -18,5 +25,4 @@ D6 PD6
 D7 PD7
 A +5V
 K 0V
-///Heater PWM
-PB4 
+
