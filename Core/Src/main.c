@@ -152,26 +152,14 @@ int main(void)
 	  /* Getting the 32 bit compensated temperature */
 	  bmp280_get_comp_temp_32bit(&temp32, bmp280_1_data.uncomp_temp, &bmp280_1);
 
-	  fan_percent=60;
+	  fan_percent=60;//temp
 
 	  // temp destination, temp actual, fan speed percentage
 	  _LCD_Show(&hlcd1, new_value,temp32 ,fan_percent);
+	  // char messagetemp destination, temp actual, fan speed percentage
+	  _Message_Generate(&message,temp32, new_value, fan_percent);
 
-//		char text[5];
-//		char message[20];
-//		sprintf(text,"%d", new_value);
-//		strcpy( message, text );
-//		strcat( message, "," );
-//		sprintf(text,"%d", temp32);
-//		strcat( message, text );
-//		strcat( message, "," );
-//		sprintf(text,"%d", fan_percent);
-//		strcat( message, text );
-//		strcat( message, "\r\n" );
-
-	   _Message_Generate(&message,temp32, new_value, fan_percent);
-
-		HAL_UART_Transmit(&huart3, (uint8_t*)message,  strlen(message), 1000);
+	  HAL_UART_Transmit(&huart3, (uint8_t*)message,  strlen(message), 1000);
 
 	  HAL_Delay(100);
 
