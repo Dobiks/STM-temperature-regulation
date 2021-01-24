@@ -43,7 +43,8 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+char rx_buffer[4];
+	uint8_t* new_value;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -55,7 +56,14 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+ {
+if(huart->Instance==USART3)
+ {
+	new_value = rx_buffer;
+ }
+HAL_UART_Receive_IT(&huart3, (uint8_t*)rx_buffer, 4);
+ }
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
