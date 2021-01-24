@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "crc.h"
 #include "i2c.h"
 #include "spi.h"
 #include "tim.h"
@@ -94,8 +95,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-
-	HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -117,6 +117,7 @@ int main(void)
   MX_I2C1_Init();
   MX_SPI4_Init();
   MX_TIM5_Init();
+  MX_CRC_Init();
   /* USER CODE BEGIN 2 */
   BMP280_Init(&bmp280_1);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
