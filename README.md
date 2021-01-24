@@ -5,6 +5,18 @@ PE2 SCK
 PE4 CS
 PE5 MISO (SDO)
 PE6 MOSI (SDA)
-
+//LCD
+VSS +5v
+Vdd 0v
+V0 potencjometr
+RS A2 PC3
+RW 0V
+E A0 PA3
+D4 PD4
+D5 PD5
+D6 PD6
+D7 PD7
+A +5V
+K 0V
 ///Heater PWM
 PB4 
