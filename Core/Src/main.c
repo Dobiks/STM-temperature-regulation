@@ -146,14 +146,8 @@ int main(void)
 
 
 	 // temporary
-	  HAL_UART_Transmit(&huart3,"Temp obecna: ",20, 100);
-		   char buffer[16];
-		   HAL_UART_Transmit(&huart3, (uint8_t*)buffer, sprintf(buffer, "%d", (int)temp32), 100);
-		   HAL_UART_Transmit(&huart3," Temp zadana: ",20, 100);
-		   HAL_UART_Transmit(&huart3, (uint8_t*)buffer, sprintf(buffer, "%d", (int)temp32), 100);
-		   HAL_UART_Transmit(&huart3," Fan: ",20, 100);
-		   HAL_UART_Transmit(&huart3, (uint8_t*)buffer, sprintf(buffer, "%d", (int)temp32), 100);
-		   HAL_UART_Transmit(&huart3,"%\r\n",4, 100);
+	  //HAL_UART_Transmit(&huart3,"Temp obecna: ",20, 100);
+
 	  HAL_Delay(100);
     /* USER CODE END WHILE */
 
