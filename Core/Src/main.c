@@ -84,7 +84,8 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+
+	HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -111,6 +112,9 @@ int main(void)
   BMP280_Status = BMP280_Init(&bmp280_1);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
   __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 0);
+
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
+  __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, 0);
 
   /** LCD with user menu initialization **************************************************/
    LCD_Init(&hlcd1);

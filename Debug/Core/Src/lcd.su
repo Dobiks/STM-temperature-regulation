@@ -9,5 +9,5 @@ lcd.c:198:6:LCD_printStr	32	static
 lcd.c:211:6:LCD_SetCursor	16	static
 lcd.c:227:6:LCD_Clear	16	static
 lcd.c:238:6:LCD_DefineChar	32	static
-lcd.c:252:6:_LCD_Show	40	static
+lcd.c:252:6:_LCD_Show	24	static
 lcd.c:284:6:LCD_printf	92	static
