@@ -44,7 +44,10 @@
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 char rx_buffer[4];
-	uint8_t* new_value;
+
+uint8_t* new_value;
+uint8_t* fan_percent;
+
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -60,10 +63,13 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
  {
 if(huart->Instance==USART3)
  {
-	new_value = rx_buffer;
+	int i;
+	sscanf(rx_buffer, "%d", &i);
+	new_value = i;
  }
 HAL_UART_Receive_IT(&huart3, (uint8_t*)rx_buffer, 4);
  }
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -141,14 +147,27 @@ int main(void)
 	  bmp280_get_uncomp_data(&bmp280_1_data, &bmp280_1);
 	  /* Getting the 32 bit compensated temperature */
 	  bmp280_get_comp_temp_32bit(&temp32, bmp280_1_data.uncomp_temp, &bmp280_1);
+
+	  fan_percent=60;
+
 	  // temp destination, temp actual, fan speed percentage
-	  _LCD_Show(&hlcd1, temp32,temp32 , "80");
+	  _LCD_Show(&hlcd1, new_value,temp32 ,fan_percent);
 
-
-	 // temporary
-	  //HAL_UART_Transmit(&huart3,"Temp obecna: ",20, 100);
+		char text[5];
+		char message[20];
+		sprintf(text,"%d", new_value);
+		strcpy( message, text );
+		strcat( message, "," );
+		sprintf(text,"%d", temp32);
+		strcat( message, text );
+		strcat( message, "," );
+		sprintf(text,"%d", fan_percent);
+		strcat( message, text );
+		strcat( message, "\r\n" );
+		HAL_UART_Transmit(&huart3, (uint8_t*)message,  strlen(message), 1000);
 
 	  HAL_Delay(100);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

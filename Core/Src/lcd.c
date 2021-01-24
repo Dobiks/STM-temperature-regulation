@@ -251,7 +251,7 @@ void LCD_DefineChar(LCD_HandleTypeDef* hlcd, uint8_t code, uint8_t bitmap[]){
  */
 void _LCD_Show(LCD_HandleTypeDef* hlcd, char* act_temp, char* dest_temp,char* fan){
 	LCD_SetCursor(hlcd, 0, 0);
-    LCD_printf(hlcd,"Tz: %03d", act_temp);
+    LCD_printf(hlcd,"Tz: %4d", act_temp);
 
     if(fan_blink<=4){
     	LCD_SetCursor(hlcd, 0, 14);
@@ -269,9 +269,9 @@ void _LCD_Show(LCD_HandleTypeDef* hlcd, char* act_temp, char* dest_temp,char* fa
     }
 
     LCD_SetCursor(hlcd, 1, 0);
-	LCD_printf(hlcd,"To: %03d", dest_temp );
+	LCD_printf(hlcd,"To: %4d", dest_temp );
 	LCD_SetCursor(hlcd, 1, 14);
-	LCD_printf(hlcd,fan);
+    LCD_printf(hlcd,"%d", fan);
 
 }
 
