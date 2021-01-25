@@ -33,7 +33,7 @@
 extern UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN Private defines */
-
+void _Message_Generate(char* message,int32_t temp32,uint32_t new_value,int32_t fan_percent);
 /* USER CODE END Private defines */
 
 void MX_USART3_UART_Init(void);
