@@ -246,16 +246,8 @@ namespace SerialPortApp
         double _plotTimeStep = 0.1;
         double _plotTime = 0.0;
         const double _plotTimeMax = 10.0;
-        private void label4_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        #region buttons
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             TrackBar tb = (TrackBar)sender;
@@ -272,6 +264,10 @@ namespace SerialPortApp
                 _spManager.Send(_dacValue.ToString(""));
             }
         }
+
+        #endregion
+
+        #region display
 
         private void ValDisp()
         {
@@ -303,6 +299,7 @@ namespace SerialPortApp
             }
         }
 
+
         private void TargetTemperatureDisplay(string str)
         {
             str = str.Insert(str.Length - 2, ",");
@@ -320,20 +317,9 @@ namespace SerialPortApp
             fanSpeedbox.Text = str;
         }
 
-        private void setLog()
-        {
-            string log;
-            string[] logs = new string[3];
-            logs[0] = targetTempBox.Text;
-            logs[1] = currentTempBox.Text;
-            logs[2] = fanSpeedbox.Text;
-            if(logs[0] != "" && logs[1] != "" && logs[2] != "" )
-            {
-                log = "Target Temperature: " + logs[0] + " | Current Temperature: " + logs[1] + " | Fan Speed: " + logs[2] + "\r\n";
-                logBox.AppendText(log);
-                logBox.ScrollToCaret();
-            }
-        }
+        #endregion
+
+        #region charts
 
         private void fanChartStart()
         {
@@ -373,11 +359,52 @@ namespace SerialPortApp
             }
         }
 
+        #endregion
+
+        #region logs
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             setLog();
         }
 
+        private void currentTempBox_TextChanged(object sender, EventArgs e)
+        {
+            setLog();
+        }
+
+        private void fanSpeedbox_TextChanged(object sender, EventArgs e)
+        {
+            setLog();
+        }
+
+        private void setLog()
+        {
+            string log;
+            string[] logs = new string[3];
+            logs[0] = targetTempBox.Text;
+            logs[1] = currentTempBox.Text;
+            logs[2] = fanSpeedbox.Text;
+            if (logs[0] != "" && logs[1] != "" && logs[2] != "")
+            {
+                log = "Target Temperature: " + logs[0] + " | Current Temperature: " + logs[1] + " | Fan Speed: " + logs[2] + "\r\n";
+                logBox.AppendText(log);
+                logBox.ScrollToCaret();
+            }
+        }
+
+        #endregion
+
+        #region nvm
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
         private void groupBox2_Enter(object sender, EventArgs e)
         {
 
@@ -401,15 +428,7 @@ namespace SerialPortApp
         {
 
         }
+        #endregion
 
-        private void currentTempBox_TextChanged(object sender, EventArgs e)
-        {
-            setLog();
-        }
-
-        private void fanSpeedbox_TextChanged(object sender, EventArgs e)
-        {
-            setLog();
-        }
     }
 }
