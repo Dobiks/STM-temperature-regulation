@@ -48,7 +48,6 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.tbDataReceive = new System.Windows.Forms.TextBox();
             this.groupBox_receive = new System.Windows.Forms.GroupBox();
-            this.rxEnableCheckBox = new System.Windows.Forms.CheckBox();
             this.btnClear = new System.Windows.Forms.Button();
             this.groupBox_transmit = new System.Windows.Forms.GroupBox();
             this.btnSend = new System.Windows.Forms.Button();
@@ -58,6 +57,7 @@
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabSerialPort = new System.Windows.Forms.TabPage();
             this.tabLogs = new System.Windows.Forms.TabPage();
+            this.logBox = new System.Windows.Forms.TextBox();
             this.tabControl = new System.Windows.Forms.TabPage();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -79,7 +79,6 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.eventLog1 = new System.Diagnostics.EventLog();
             this.eventLog2 = new System.Diagnostics.EventLog();
-            this.logBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).BeginInit();
             this.groupBox_settings.SuspendLayout();
             this.groupBox_receive.SuspendLayout();
@@ -245,7 +244,6 @@
             this.groupBox_receive.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox_receive.Controls.Add(this.rxEnableCheckBox);
             this.groupBox_receive.Controls.Add(this.btnClear);
             this.groupBox_receive.Controls.Add(this.tbDataReceive);
             this.groupBox_receive.Location = new System.Drawing.Point(9, 212);
@@ -254,20 +252,6 @@
             this.groupBox_receive.TabIndex = 14;
             this.groupBox_receive.TabStop = false;
             this.groupBox_receive.Text = "Receive";
-            // 
-            // rxEnableCheckBox
-            // 
-            this.rxEnableCheckBox.AutoSize = true;
-            this.rxEnableCheckBox.Checked = true;
-            this.rxEnableCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.rxEnableCheckBox.Location = new System.Drawing.Point(11, 121);
-            this.rxEnableCheckBox.Margin = new System.Windows.Forms.Padding(2);
-            this.rxEnableCheckBox.Name = "rxEnableCheckBox";
-            this.rxEnableCheckBox.Size = new System.Drawing.Size(75, 17);
-            this.rxEnableCheckBox.TabIndex = 15;
-            this.rxEnableCheckBox.Text = "Rx Enable";
-            this.rxEnableCheckBox.UseVisualStyleBackColor = true;
-            this.rxEnableCheckBox.CheckedChanged += new System.EventHandler(this.rxEnableCheckBox_CheckedChanged);
             // 
             // btnClear
             // 
@@ -371,6 +355,15 @@
             this.tabLogs.TabIndex = 1;
             this.tabLogs.Text = "Logs";
             this.tabLogs.UseVisualStyleBackColor = true;
+            // 
+            // logBox
+            // 
+            this.logBox.Location = new System.Drawing.Point(8, 5);
+            this.logBox.Multiline = true;
+            this.logBox.Name = "logBox";
+            this.logBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.logBox.Size = new System.Drawing.Size(508, 190);
+            this.logBox.TabIndex = 14;
             // 
             // tabControl
             // 
@@ -580,12 +573,12 @@
             // trackBar1
             // 
             this.trackBar1.Location = new System.Drawing.Point(6, 51);
-            this.trackBar1.Maximum = 2000;
-            this.trackBar1.Minimum = 1000;
+            this.trackBar1.Maximum = 3500;
+            this.trackBar1.Minimum = 2500;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(403, 45);
             this.trackBar1.TabIndex = 0;
-            this.trackBar1.Value = 1000;
+            this.trackBar1.Value = 2500;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // eventLog1
@@ -595,15 +588,6 @@
             // eventLog2
             // 
             this.eventLog2.SynchronizingObject = this;
-            // 
-            // logBox
-            // 
-            this.logBox.Location = new System.Drawing.Point(8, 5);
-            this.logBox.Multiline = true;
-            this.logBox.Name = "logBox";
-            this.logBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.logBox.Size = new System.Drawing.Size(508, 190);
-            this.logBox.TabIndex = 14;
             // 
             // MainForm
             // 
@@ -670,7 +654,6 @@
         private System.Windows.Forms.TabPage tabSerialPort;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.TabPage tabLogs;
-        private System.Windows.Forms.CheckBox rxEnableCheckBox;
         private System.Windows.Forms.TabPage tabControl;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;

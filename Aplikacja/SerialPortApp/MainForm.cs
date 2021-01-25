@@ -138,13 +138,6 @@ namespace SerialPortApp
          * @param sender - contains a reference to the control/object that raised the event.
          * @param e - contains the event data.
          */
-        private void rxEnableCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rxEnableCheckBox.Checked)
-                RxTextBoxEnable();
-            else
-                RxTextBoxDisable();
-        }
 
         #endregion
 
@@ -177,6 +170,7 @@ namespace SerialPortApp
 
             // Diable "Disconnect" button
             btnStop.Enabled = false;
+            textBox1.Text = "25.00";
         }
 
         /*
@@ -216,7 +210,7 @@ namespace SerialPortApp
          */
         private void RxTextBoxEnable()
         {
-            rxEnableCheckBox.Checked = true;
+
             tbDataReceive.Enabled = true;
             _spManager.NewSerialDataRecieved += new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved);
         }
@@ -226,8 +220,8 @@ namespace SerialPortApp
          */
         private void RxTextBoxDisable()
         {
-            rxEnableCheckBox.Checked = false;
-            tbDataReceive.Enabled = false;
+
+            tbDataReceive.Enabled = true;
             _spManager.NewSerialDataRecieved -= new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved);
         }
 
