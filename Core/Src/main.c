@@ -74,7 +74,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	 {
 		int i;
 		sscanf(rx_buffer, "%d", &i);
-		new_value = i;
+		if (i<=3500 && i>=2500)	new_value = i;
 		ENC_SetCounter(&henc1,4*(new_value - start_value)/10);
 
 	 }
