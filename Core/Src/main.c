@@ -32,6 +32,10 @@
 #include "lcd_config.h"
 #include "encoder_config.h"
 #include "encoder.h"
+#include "heater_pwm_config.h"
+#include "heater_pwm.h"
+#include "fan_pwm.h"
+#include "fan_pwm_config.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -47,7 +51,8 @@
 /* USER CODE BEGIN PM */
 char rx_buffer[4];
 uint16_t new_value;
-uint8_t* fan_percent;
+uint8_t fan_percent=0;
+uint8_t heater_percent=0;
 uint16_t start_value = 2500;
 
 
@@ -132,13 +137,17 @@ int main(void)
   BMP280_Init(&bmp280_1);
 
   /** Heater PWM initialization *******************************************/
-  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
-  __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 0);
+
+  //HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
+  //__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 0);
+  HEATER_PWM_Init(&heaterpwm1);
+  HEATER_PWM_SetDuty(&heaterpwm1, heater_percent);
 
   /** Fan PWM initialization *******************************************/
-  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
-  __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, 0);
-
+  //HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
+  //__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, 0);
+  FAN_PWM_Init(&fanpwm1);
+  FAN_PWM_SetDuty(&fanpwm1, fan_percent);
 
   HAL_UART_Receive_IT(&huart3, (uint8_t*)rx_buffer, 4);
 
@@ -172,7 +181,6 @@ int main(void)
 	  /* Getting the 32 bit compensated temperature */
 	  bmp280_get_comp_temp_32bit(&temp32, bmp280_1_data.uncomp_temp, &bmp280_1);
 
-	  fan_percent=60;//temp
 
 	  // temp destination, temp actual, fan speed percentage
 	  _LCD_Show(&hlcd1, new_value,temp32 ,fan_percent);

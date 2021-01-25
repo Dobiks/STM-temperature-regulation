@@ -1,0 +1,2 @@
+fan_pwm.c:33:6:FAN_PWM_Init	16	static
+fan_pwm.c:44:6:FAN_PWM_SetDuty	24	static
