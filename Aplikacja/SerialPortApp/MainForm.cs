@@ -309,9 +309,24 @@ namespace SerialPortApp
             fanSpeedbox.Text = str;
         }
 
+        private void setLog()
+        {
+            string log;
+            string[] data = new string[3];
+            data[0] = targetTempBox.Text;
+            data[1] = currentTempBox.Text;
+            data[2] = fanSpeedbox.Text;
+            if(data[0] != "" && data[1] != "" && data[2] != "" )
+            {
+                log = "Target Temperature: " + data[0] + " | Current Temperature: " + data[1] + " | Fan Speed: " + data[2] + "\r\n";
+                logBox.AppendText(log);
+                logBox.ScrollToCaret();
+            }
+        }
+
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-
+            setLog();
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
@@ -321,7 +336,6 @@ namespace SerialPortApp
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void tabControl_Click(object sender, EventArgs e)
@@ -337,6 +351,16 @@ namespace SerialPortApp
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void currentTempBox_TextChanged(object sender, EventArgs e)
+        {
+            setLog();
+        }
+
+        private void fanSpeedbox_TextChanged(object sender, EventArgs e)
+        {
+            setLog();
         }
     }
 }
