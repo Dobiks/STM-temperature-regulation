@@ -54,8 +54,8 @@ all: main-build
 main-build: ThermoregulationSystem.elf secondary-outputs
 
 # Tool invocations
-ThermoregulationSystem.elf: $(OBJS) $(USER_OBJS) C:\Users\HUBI\STM32CubeIDE\workspace_1.5.0\ThermoregulationSystem\STM32F746ZGTX_FLASH.ld
-	arm-none-eabi-gcc -o "ThermoregulationSystem.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\HUBI\STM32CubeIDE\workspace_1.5.0\ThermoregulationSystem\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ThermoregulationSystem.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+ThermoregulationSystem.elf: $(OBJS) $(USER_OBJS) C:\Users\Jakub\iCloudDrive\GitHub\UkladRegulacjiTemperaturySTM\STM32F746ZGTX_FLASH.ld
+	arm-none-eabi-gcc -o "ThermoregulationSystem.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Jakub\iCloudDrive\GitHub\UkladRegulacjiTemperaturySTM\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ThermoregulationSystem.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

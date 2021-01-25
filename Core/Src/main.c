@@ -72,11 +72,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		new_value = i;
 		ENC_SetCounter(&henc1,(new_value - start_value)/10);
 
-
-
-
-
-
 	 }
 	HAL_UART_Receive_IT(&huart3, (uint8_t*)rx_buffer, 4);
  }
@@ -88,7 +83,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 
 
-uint32_t crcVal;
 /* USER CODE END 0 */
 
 /**
@@ -167,7 +161,8 @@ int main(void)
 	  // Read rotary encoder counter
 
 	  encoder_count = ENC_GetCounter(&henc1);
-	  new_value = (int)(start_value + 10 * ((float)encoder_count)/4.0);
+	  // tA LINIJKA PSUJE KOMUNIKACJE PO UARTA KOMPUTER->STM
+	  //new_value = (uint16_t)(start_value + 10 * ((float)encoder_count)/4.0);
 
 
 
