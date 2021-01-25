@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -60,7 +63,7 @@
             this.tabLogs = new System.Windows.Forms.TabPage();
             this.logBox = new System.Windows.Forms.TextBox();
             this.tabControl = new System.Windows.Forms.TabPage();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.fanChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.fanSpeedbox = new System.Windows.Forms.TextBox();
@@ -80,6 +83,7 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.eventLog1 = new System.Diagnostics.EventLog();
             this.eventLog2 = new System.Diagnostics.EventLog();
+            this.tempChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).BeginInit();
             this.groupBox_settings.SuspendLayout();
             this.groupBox_receive.SuspendLayout();
@@ -89,13 +93,14 @@
             this.tabSerialPort.SuspendLayout();
             this.tabLogs.SuspendLayout();
             this.tabControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fanChart)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tempChart)).BeginInit();
             this.SuspendLayout();
             // 
             // baudRateLabel
@@ -362,6 +367,7 @@
             // 
             // tabLogs
             // 
+            this.tabLogs.Controls.Add(this.tempChart);
             this.tabLogs.Controls.Add(this.logBox);
             this.tabLogs.Location = new System.Drawing.Point(4, 22);
             this.tabLogs.Margin = new System.Windows.Forms.Padding(2);
@@ -383,7 +389,7 @@
             // 
             // tabControl
             // 
-            this.tabControl.Controls.Add(this.chart1);
+            this.tabControl.Controls.Add(this.fanChart);
             this.tabControl.Controls.Add(this.groupBox3);
             this.tabControl.Controls.Add(this.groupBox2);
             this.tabControl.Controls.Add(this.groupBox1);
@@ -397,27 +403,29 @@
             this.tabControl.UseVisualStyleBackColor = true;
             this.tabControl.Click += new System.EventHandler(this.tabControl_Click);
             // 
-            // chart1
+            // fanChart
             // 
-            chartArea1.AxisX.Interval = 10D;
-            chartArea1.AxisX.Maximum = 100D;
-            chartArea1.AxisX.Minimum = 0D;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Alignment = System.Drawing.StringAlignment.Center;
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(8, 304);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(505, 127);
-            this.chart1.TabIndex = 10;
-            this.chart1.Text = "chart1";
+            chartArea2.AxisX.Interval = 10D;
+            chartArea2.AxisX.Maximum = 100D;
+            chartArea2.AxisX.Minimum = 0D;
+            chartArea2.AxisY.Maximum = 100D;
+            chartArea2.AxisY.Minimum = 0D;
+            chartArea2.Name = "ChartArea1";
+            this.fanChart.ChartAreas.Add(chartArea2);
+            legend2.Alignment = System.Drawing.StringAlignment.Center;
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend2.Name = "Legend1";
+            this.fanChart.Legends.Add(legend2);
+            this.fanChart.Location = new System.Drawing.Point(8, 304);
+            this.fanChart.Name = "fanChart";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Fan Speed";
+            this.fanChart.Series.Add(series2);
+            this.fanChart.Size = new System.Drawing.Size(505, 127);
+            this.fanChart.TabIndex = 10;
+            this.fanChart.Text = "chart1";
             // 
             // groupBox3
             // 
@@ -605,6 +613,30 @@
             // 
             this.eventLog2.SynchronizingObject = this;
             // 
+            // tempChart
+            // 
+            chartArea1.AxisX.Interval = 10D;
+            chartArea1.AxisX.Maximum = 100D;
+            chartArea1.AxisX.Minimum = 0D;
+            chartArea1.AxisY.Maximum = 3600D;
+            chartArea1.AxisY.Minimum = 2400D;
+            chartArea1.Name = "ChartArea1";
+            this.tempChart.ChartAreas.Add(chartArea1);
+            legend1.Alignment = System.Drawing.StringAlignment.Center;
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend1.Name = "Legend1";
+            this.tempChart.Legends.Add(legend1);
+            this.tempChart.Location = new System.Drawing.Point(8, 210);
+            this.tempChart.Name = "tempChart";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Current Temperature";
+            this.tempChart.Series.Add(series1);
+            this.tempChart.Size = new System.Drawing.Size(505, 214);
+            this.tempChart.TabIndex = 15;
+            this.tempChart.Text = "chart1";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -629,7 +661,7 @@
             this.tabLogs.ResumeLayout(false);
             this.tabLogs.PerformLayout();
             this.tabControl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fanChart)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -639,6 +671,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tempChart)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -686,13 +719,14 @@
         private System.Windows.Forms.Button SetButton;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart fanChart;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox fanSpeedbox;
         private System.Windows.Forms.Label label6;
         private System.Diagnostics.EventLog eventLog1;
         private System.Diagnostics.EventLog eventLog2;
         private System.Windows.Forms.TextBox logBox;
+        private System.Windows.Forms.DataVisualization.Charting.Chart tempChart;
     }
 }
 
