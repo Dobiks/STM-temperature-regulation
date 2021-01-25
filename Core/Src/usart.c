@@ -108,27 +108,6 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 
 /* USER CODE BEGIN 1 */
 
-/**
- * @brief Clear the screen.
- * @param[in] message   char array of message to send
- * @param[in] temp32  Null-terminated string
- * @param[in] new_value  Null-terminated string
- * @param[in] fan_percent  Null-terminated string
- * @return None
- */
-void _Message_Generate(char* message,int32_t temp32,uint32_t new_value,int32_t fan_percent){
-	char text[5];
-	strcpy( message, ";" );
-	sprintf(text,"%4d", new_value);
-	strcat( message, text );
-	strcat( message, "," );
-	sprintf(text,"%4d", temp32);
-	strcat( message, text );
-	strcat( message, "," );
-	sprintf(text,"%d", fan_percent);
-	strcat( message, text );
-	strcat( message, ";\r\n" );
-}
 /* USER CODE END 1 */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
