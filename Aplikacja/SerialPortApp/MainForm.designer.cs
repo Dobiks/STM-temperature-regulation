@@ -48,6 +48,7 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.tbDataReceive = new System.Windows.Forms.TextBox();
             this.groupBox_receive = new System.Windows.Forms.GroupBox();
+            this.rxEnableCheckBox = new System.Windows.Forms.CheckBox();
             this.btnClear = new System.Windows.Forms.Button();
             this.groupBox_transmit = new System.Windows.Forms.GroupBox();
             this.btnSend = new System.Windows.Forms.Button();
@@ -244,6 +245,7 @@
             this.groupBox_receive.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox_receive.Controls.Add(this.rxEnableCheckBox);
             this.groupBox_receive.Controls.Add(this.btnClear);
             this.groupBox_receive.Controls.Add(this.tbDataReceive);
             this.groupBox_receive.Location = new System.Drawing.Point(9, 212);
@@ -252,6 +254,20 @@
             this.groupBox_receive.TabIndex = 14;
             this.groupBox_receive.TabStop = false;
             this.groupBox_receive.Text = "Receive";
+            // 
+            // rxEnableCheckBox
+            // 
+            this.rxEnableCheckBox.AutoSize = true;
+            this.rxEnableCheckBox.Checked = true;
+            this.rxEnableCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.rxEnableCheckBox.Location = new System.Drawing.Point(11, 121);
+            this.rxEnableCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.rxEnableCheckBox.Name = "rxEnableCheckBox";
+            this.rxEnableCheckBox.Size = new System.Drawing.Size(75, 17);
+            this.rxEnableCheckBox.TabIndex = 15;
+            this.rxEnableCheckBox.Text = "Rx Enable";
+            this.rxEnableCheckBox.UseVisualStyleBackColor = true;
+            this.rxEnableCheckBox.CheckedChanged += new System.EventHandler(this.rxEnableCheckBox_CheckedChanged);
             // 
             // btnClear
             // 
@@ -432,6 +448,7 @@
             this.fanSpeedbox.Name = "fanSpeedbox";
             this.fanSpeedbox.Size = new System.Drawing.Size(42, 26);
             this.fanSpeedbox.TabIndex = 8;
+            this.fanSpeedbox.TextChanged += new System.EventHandler(this.fanSpeedbox_TextChanged);
             // 
             // label7
             // 
@@ -496,6 +513,7 @@
             this.currentTempBox.Name = "currentTempBox";
             this.currentTempBox.Size = new System.Drawing.Size(60, 26);
             this.currentTempBox.TabIndex = 5;
+            this.currentTempBox.TextChanged += new System.EventHandler(this.currentTempBox_TextChanged);
             // 
             // label4
             // 
@@ -652,6 +670,7 @@
         private System.Windows.Forms.TabPage tabSerialPort;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.TabPage tabLogs;
+        private System.Windows.Forms.CheckBox rxEnableCheckBox;
         private System.Windows.Forms.TabPage tabControl;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;
