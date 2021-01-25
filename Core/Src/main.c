@@ -31,6 +31,7 @@
 #include "bmp280_config.h"
 #include "lcd_config.h"
 #include "encoder_config.h"
+#include "encoder.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -74,6 +75,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+
+
 uint32_t crcVal;
 /* USER CODE END 0 */
 
@@ -119,19 +123,17 @@ int main(void)
   MX_CRC_Init();
   /* USER CODE BEGIN 2 */
 
-  //Sensor
+  /** Sensor initialization *******************************************/
   BMP280_Init(&bmp280_1);
 
-  //Heater PWM
+  /** Heater PWM initialization *******************************************/
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
   __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 0);
 
-  //Fan PWM
+  /** Fan PWM initialization *******************************************/
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
   __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, 0);
 
-  //Encoder init
-  HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
 
   HAL_UART_Receive_IT(&huart3, (uint8_t*)rx_buffer, 4);
 
@@ -139,7 +141,7 @@ int main(void)
    LCD_Init(&hlcd1);
 
   /** Rotary quadrature encoder initialization *******************************************/
-
+   ENC_Init(&henc1);
 
   /* USER CODE END 2 */
 
@@ -150,7 +152,10 @@ int main(void)
 
 
 	  // Read rotary encoder counter
-	  encoder_count = __HAL_TIM_GET_COUNTER(&htim4);
+	  encoder_count = ENC_GetCounter(&henc1);
+	  if(encoder_count % 4 == 0)
+	  new_value = 2500 + 10 * (encoder_count/4 + 1);
+
 
 	  /* Reading the raw data from sensor */
 	  bmp280_get_uncomp_data(&bmp280_1_data, &bmp280_1);

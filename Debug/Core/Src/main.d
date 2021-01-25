@@ -37,7 +37,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/tim.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
  ../Core/Inc/bmp280_config.h ../Core/Inc/bmp280.h \
  ../Core/Inc/bmp280_defs.h ../Core/Inc/lcd_config.h ../Core/Inc/lcd.h \
- ../Core/Inc/encoder_config.h ../Core/Inc/encoder.h
+ ../Core/Inc/encoder_config.h ../Core/Inc/encoder.h ../Core/Inc/encoder.h
 
 ../Core/Inc/main.h:
 
@@ -134,5 +134,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/lcd.h:
 
 ../Core/Inc/encoder_config.h:
+
+../Core/Inc/encoder.h:
 
 ../Core/Inc/encoder.h:
