@@ -70,8 +70,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		int i;
 		sscanf(rx_buffer, "%d", &i);
 		new_value = i;
-		//Tutaj nie powinno być nic od enkodera , tylko odbieranie danych po uart, nie ma to żadnego związku z enkoderem
-		ENC_SetCounter(&henc1,(new_value - start_value)/10);
+		ENC_SetCounter(&henc1,4*(new_value - start_value)/10);
 
 	 }
 	HAL_UART_Receive_IT(&huart3, (uint8_t*)rx_buffer, 4);
@@ -84,6 +83,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 
 
+uint32_t crcVal;
 /* USER CODE END 0 */
 
 /**
@@ -162,8 +162,7 @@ int main(void)
 	  // Read rotary encoder counter
 
 	  encoder_count = ENC_GetCounter(&henc1);
-	  // tA LINIJKA PSUJE KOMUNIKACJE PO UARTA KOMPUTER->STM
-	  //new_value = (uint16_t)(start_value + 10 * ((float)encoder_count)/4.0);
+	  new_value = (int)(start_value + 10 * ((float)encoder_count)/4.0);
 
 
 
@@ -175,14 +174,13 @@ int main(void)
 
 	  fan_percent=60;//temp
 
+	  // temp destination, temp actual, fan speed percentage
+	  _LCD_Show(&hlcd1, new_value,temp32 ,fan_percent);
 
 	  // char messagetemp destination, temp actual, fan speed percentage
 	  _Message_Generate(&message,temp32, new_value, fan_percent);
+
 	  HAL_UART_Transmit(&huart3, (uint8_t*)message,  strlen(message), 1000);
-
-	  // temp destination, temp actual, fan speed percentage
-		  _LCD_Show(&hlcd1, new_value,temp32 ,fan_percent);
-
 
 	  HAL_Delay(100);
 
