@@ -4710,8 +4710,8 @@ void _LCD_Show(LCD_HandleTypeDef* hlcd, char* act_temp, char* dest_temp,char* fa
  80023dc:	490c      	ldr	r1, [pc, #48]	; (8002410 <_LCD_Show+0xc0>)
  80023de:	68f8      	ldr	r0, [r7, #12]
  80023e0:	f000 f81a 	bl	8002418 <LCD_printf>
-	LCD_SetCursor(hlcd, 1, 14);
- 80023e4:	220e      	movs	r2, #14
+	LCD_SetCursor(hlcd, 1, 13);
+ 80023e4:	220d      	movs	r2, #13
  80023e6:	2101      	movs	r1, #1
  80023e8:	68f8      	ldr	r0, [r7, #12]
  80023ea:	f7ff ff97 	bl	800231c <LCD_SetCursor>
