@@ -177,6 +177,7 @@ namespace SerialPortApp
 
             // Diable "Disconnect" button
             btnStop.Enabled = false;
+            textBox1.Text = "25.00";
         }
 
         /*
@@ -235,8 +236,7 @@ namespace SerialPortApp
         #endregion
 
         UInt16 _dacValue;
-        float maxTemp = 20;
-        float minTemp = 1;
+        string[] _data;
 
         private void label4_Click(object sender, EventArgs e)
         {
@@ -259,7 +259,10 @@ namespace SerialPortApp
 
         private void SetButton_Click(object sender, EventArgs e)
         {
-            _spManager.Send(_dacValue.ToString(""));
+            if(_dacValue<=3500&&_dacValue>=2500)
+            {
+                _spManager.Send(_dacValue.ToString(""));
+            }
         }
 
         private void ValDisp()
@@ -275,13 +278,13 @@ namespace SerialPortApp
                     {
                         if (tmp[i].Length > 10)
                         {
-                            string[] data = tmp[i].Split(',');
-                            if (data.Length == 3 && data[0].Length == 4 && data[1].Length == 4)
+                            _data = tmp[i].Split(',');
+                            if (_data.Length == 3 && _data[0].Length == 4 && _data[1].Length == 4)
                             {
-                                data[1] = data[1].Replace(" ", String.Empty);
-                                TargetTemperatureDisplay(data[0]);
-                                CurrentTemperatureDisplay(data[1]);
-                                FanSpeedDisplay(data[2]);
+                                _data[1] = _data[1].Replace(" ", String.Empty);
+                                TargetTemperatureDisplay(_data[0]);
+                                CurrentTemperatureDisplay(_data[1]);
+                                FanSpeedDisplay(_data[2]);
                             }
                             break;
                         }
@@ -312,13 +315,13 @@ namespace SerialPortApp
         private void setLog()
         {
             string log;
-            string[] data = new string[3];
-            data[0] = targetTempBox.Text;
-            data[1] = currentTempBox.Text;
-            data[2] = fanSpeedbox.Text;
-            if(data[0] != "" && data[1] != "" && data[2] != "" )
+            string[] logs = new string[3];
+            logs[0] = targetTempBox.Text;
+            logs[1] = currentTempBox.Text;
+            logs[2] = fanSpeedbox.Text;
+            if(logs[0] != "" && logs[1] != "" && logs[2] != "" )
             {
-                log = "Target Temperature: " + data[0] + " | Current Temperature: " + data[1] + " | Fan Speed: " + data[2] + "\r\n";
+                log = "Target Temperature: " + logs[0] + " | Current Temperature: " + logs[1] + " | Fan Speed: " + logs[2] + "\r\n";
                 logBox.AppendText(log);
                 logBox.ScrollToCaret();
             }

@@ -1,0 +1,10 @@
+C:\Users\ultor\Documents\GitHub\UkladRegulacjiTemperaturySTM\Aplikacja\SerialPortApp\bin\Debug\SerialPortApp.exe.config
+C:\Users\ultor\Documents\GitHub\UkladRegulacjiTemperaturySTM\Aplikacja\SerialPortApp\bin\Debug\SerialPortApp.exe
+C:\Users\ultor\Documents\GitHub\UkladRegulacjiTemperaturySTM\Aplikacja\SerialPortApp\bin\Debug\SerialPortApp.pdb
+C:\Users\ultor\Documents\GitHub\UkladRegulacjiTemperaturySTM\Aplikacja\SerialPortApp\obj\x86\Debug\SerialPortApp.csprojAssemblyReference.cache
+C:\Users\ultor\Documents\GitHub\UkladRegulacjiTemperaturySTM\Aplikacja\SerialPortApp\obj\x86\Debug\SerialPortApp.MainForm.resources
+C:\Users\ultor\Documents\GitHub\UkladRegulacjiTemperaturySTM\Aplikacja\SerialPortApp\obj\x86\Debug\SerialPortApp.Properties.Resources.resources
+C:\Users\ultor\Documents\GitHub\UkladRegulacjiTemperaturySTM\Aplikacja\SerialPortApp\obj\x86\Debug\SerialPortApp.csproj.GenerateResource.cache
+C:\Users\ultor\Documents\GitHub\UkladRegulacjiTemperaturySTM\Aplikacja\SerialPortApp\obj\x86\Debug\SerialPortApp.csproj.CoreCompileInputs.cache
+C:\Users\ultor\Documents\GitHub\UkladRegulacjiTemperaturySTM\Aplikacja\SerialPortApp\obj\x86\Debug\SerialPortApp.exe
+C:\Users\ultor\Documents\GitHub\UkladRegulacjiTemperaturySTM\Aplikacja\SerialPortApp\obj\x86\Debug\SerialPortApp.pdb

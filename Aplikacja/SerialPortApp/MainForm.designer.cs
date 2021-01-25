@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.baudRateLabel = new System.Windows.Forms.Label();
             this.dataBitsLabel = new System.Windows.Forms.Label();
             this.parityLabel = new System.Windows.Forms.Label();
@@ -58,6 +58,7 @@
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabSerialPort = new System.Windows.Forms.TabPage();
             this.tabLogs = new System.Windows.Forms.TabPage();
+            this.logBox = new System.Windows.Forms.TextBox();
             this.tabControl = new System.Windows.Forms.TabPage();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -79,7 +80,6 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.eventLog1 = new System.Diagnostics.EventLog();
             this.eventLog2 = new System.Diagnostics.EventLog();
-            this.logBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).BeginInit();
             this.groupBox_settings.SuspendLayout();
             this.groupBox_receive.SuspendLayout();
@@ -372,6 +372,15 @@
             this.tabLogs.Text = "Logs";
             this.tabLogs.UseVisualStyleBackColor = true;
             // 
+            // logBox
+            // 
+            this.logBox.Location = new System.Drawing.Point(8, 5);
+            this.logBox.Multiline = true;
+            this.logBox.Name = "logBox";
+            this.logBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.logBox.Size = new System.Drawing.Size(508, 190);
+            this.logBox.TabIndex = 14;
+            // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this.chart1);
@@ -390,22 +399,22 @@
             // 
             // chart1
             // 
-            chartArea3.AxisX.Interval = 10D;
-            chartArea3.AxisX.Maximum = 100D;
-            chartArea3.AxisX.Minimum = 0D;
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Alignment = System.Drawing.StringAlignment.Center;
-            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            chartArea1.AxisX.Interval = 10D;
+            chartArea1.AxisX.Maximum = 100D;
+            chartArea1.AxisX.Minimum = 0D;
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Alignment = System.Drawing.StringAlignment.Center;
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(8, 304);
             this.chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart1.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(505, 127);
             this.chart1.TabIndex = 10;
             this.chart1.Text = "chart1";
@@ -580,12 +589,12 @@
             // trackBar1
             // 
             this.trackBar1.Location = new System.Drawing.Point(6, 51);
-            this.trackBar1.Maximum = 2000;
-            this.trackBar1.Minimum = 1000;
+            this.trackBar1.Maximum = 3500;
+            this.trackBar1.Minimum = 2500;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(403, 45);
             this.trackBar1.TabIndex = 0;
-            this.trackBar1.Value = 1000;
+            this.trackBar1.Value = 2500;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // eventLog1
@@ -595,15 +604,6 @@
             // eventLog2
             // 
             this.eventLog2.SynchronizingObject = this;
-            // 
-            // logBox
-            // 
-            this.logBox.Location = new System.Drawing.Point(8, 5);
-            this.logBox.Multiline = true;
-            this.logBox.Name = "logBox";
-            this.logBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.logBox.Size = new System.Drawing.Size(508, 190);
-            this.logBox.TabIndex = 14;
             // 
             // MainForm
             // 
