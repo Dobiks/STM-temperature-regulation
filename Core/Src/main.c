@@ -46,8 +46,11 @@
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 char rx_buffer[4];
-uint8_t* new_value;
+uint16_t new_value;
 uint8_t* fan_percent;
+uint16_t start_value = 2500;
+
+
 
 /* USER CODE END PM */
 
@@ -67,6 +70,13 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		int i;
 		sscanf(rx_buffer, "%d", &i);
 		new_value = i;
+		ENC_SetCounter(&henc1,(new_value - start_value)/10);
+
+
+
+
+
+
 	 }
 	HAL_UART_Receive_IT(&huart3, (uint8_t*)rx_buffer, 4);
  }
@@ -143,6 +153,9 @@ int main(void)
   /** Rotary quadrature encoder initialization *******************************************/
    ENC_Init(&henc1);
 
+
+   //encoder_count = ENC_GetCounter(&henc1);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -152,9 +165,10 @@ int main(void)
 
 
 	  // Read rotary encoder counter
+
 	  encoder_count = ENC_GetCounter(&henc1);
-	  if(encoder_count % 4 == 0)
-	  new_value = 2500 + 10 * (encoder_count/4 + 1);
+	  new_value = (int)(start_value + 10 * ((float)encoder_count)/4.0);
+
 
 
 	  /* Reading the raw data from sensor */

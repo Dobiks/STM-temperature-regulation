@@ -54,6 +54,11 @@ uint32_t ENC_GetCounter(ENC_HandleTypeDef* henc)
   return henc->Counter;
 }
 
+void ENC_SetCounter(ENC_HandleTypeDef* henc, uint16_t new_counter)
+{
+	henc->Timer->Instance->CNT = new_counter;
+}
+
 #else
 
 /**

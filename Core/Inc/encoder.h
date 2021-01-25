@@ -74,6 +74,8 @@ void ENC_Init(ENC_HandleTypeDef* henc);
  */
 uint32_t ENC_GetCounter(ENC_HandleTypeDef* henc);
 
+void ENC_Reset(ENC_HandleTypeDef* henc);
+
 #else
 
 /**
