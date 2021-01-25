@@ -75,7 +75,7 @@ namespace SerialPortApp
             tbDataReceive.AppendText(str);
             tbDataReceive.ScrollToCaret();
             ValDisp();
-            if(_data.Length==3)
+            if (_data.Length == 3)
             {
                 fanChartStart();
                 tempChartStart();
@@ -217,7 +217,7 @@ namespace SerialPortApp
             parityComboBox.Enabled = true;
             stopBitsComboBox.Enabled = true;
         }
-   
+
         /*
          * Enables receive text box.
          */
@@ -245,7 +245,8 @@ namespace SerialPortApp
         string[] _data;
         double _plotTimeStep = 0.1;
         double _plotTime = 0.0;
-        const double _plotTimeMax = 10.0;
+        double _plotTimeMax = 100.0;
+        //double _tempChartMax = 100;
 
         #region buttons
         private void trackBar1_Scroll(object sender, EventArgs e)
@@ -259,7 +260,7 @@ namespace SerialPortApp
 
         private void SetButton_Click(object sender, EventArgs e)
         {
-            if(_dacValue<=3500&&_dacValue>=2500)
+            if (_dacValue <= 3500 && _dacValue >= 2500)
             {
                 _spManager.Send(_dacValue.ToString(""));
             }
@@ -323,34 +324,46 @@ namespace SerialPortApp
 
         private void fanChartStart()
         {
-                try
-                {
-                    int fanspeed = Convert.ToInt32(_data[2]);
-                if(fanspeed>=0&&fanspeed<=100)
+            fanChart.ChartAreas[0].AxisX.LabelStyle.Format = "0";
+            try
+            {
+                int fanspeed = Convert.ToInt32(_data[2]);
+                if (fanspeed >= 0 && fanspeed <= 100)
                 {
                     fanChart.Series[0].Points.AddXY(_plotTime, fanspeed);
                     _plotTime += _plotTimeStep;
                 }
-                }
-                catch (Exception error)
-                {
-                    Debug.WriteLine(error.Message);
-                }
+            }
+            catch (Exception error)
+            {
+                Debug.WriteLine(error.Message);
+            }
 
 
         }
 
         private void tempChartStart()
         {
+            tempChart.ChartAreas[0].AxisX.LabelStyle.Format = "0";
             try
             {
-                int tempValue = Convert.ToInt32(_data[0]);
+                int targetTemp = Convert.ToInt32(_data[0]);
                 int currentTemp = Convert.ToInt32(_data[1]);
-                if (tempValue >= 2500 && tempValue <= 3500)
+                if (targetTemp >= 2500 && targetTemp <= 3500)
                 {
                     tempChart.Series[0].Points.AddXY(_plotTime, currentTemp);
-                    tempChart.Series[1].Points.AddXY(_plotTime, tempValue);
-                  //  _plotTime += _plotTimeStep;
+                    tempChart.Series[1].Points.AddXY(_plotTime, targetTemp);
+                    //  _plotTime += _plotTimeStep;
+                }
+                if (_plotTime > _plotTimeMax)
+                {
+                    tempChart.Series[0].Points.RemoveAt(0);
+                    tempChart.Series[1].Points.RemoveAt(0);
+                    fanChart.Series[0].Points.RemoveAt(0);
+                    tempChart.ChartAreas[0].AxisX.Minimum = _plotTime - _plotTimeMax;
+                    tempChart.ChartAreas[0].AxisX.Maximum = _plotTime;
+                    fanChart.ChartAreas[0].AxisX.Minimum = _plotTime - _plotTimeMax;
+                    fanChart.ChartAreas[0].AxisX.Maximum = _plotTime;
                 }
             }
             catch (Exception error)
