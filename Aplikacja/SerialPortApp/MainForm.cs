@@ -75,6 +75,12 @@ namespace SerialPortApp
             tbDataReceive.AppendText(str);
             tbDataReceive.ScrollToCaret();
             ValDisp();
+            if(_data.Length==3)
+            {
+                fanChartStart();
+                tempChartStart();
+            }
+
         }
 
         /*
@@ -237,7 +243,9 @@ namespace SerialPortApp
 
         UInt16 _dacValue;
         string[] _data;
-
+        double _plotTimeStep = 0.1;
+        double _plotTime = 0.0;
+        const double _plotTimeMax = 10.0;
         private void label4_Click(object sender, EventArgs e)
         {
 
@@ -324,6 +332,44 @@ namespace SerialPortApp
                 log = "Target Temperature: " + logs[0] + " | Current Temperature: " + logs[1] + " | Fan Speed: " + logs[2] + "\r\n";
                 logBox.AppendText(log);
                 logBox.ScrollToCaret();
+            }
+        }
+
+        private void fanChartStart()
+        {
+                try
+                {
+                    int fanspeed = Convert.ToInt32(_data[2]);
+                if(fanspeed>=0&&fanspeed<=100)
+                {
+                    fanChart.Series[0].Points.AddXY(_plotTime, fanspeed);
+                    _plotTime += _plotTimeStep;
+                }
+                }
+                catch (Exception error)
+                {
+                    Debug.WriteLine(error.Message);
+                }
+
+
+        }
+
+        private void tempChartStart()
+        {
+            try
+            {
+                int tempValue = Convert.ToInt32(_data[0]);
+                int currentTemp = Convert.ToInt32(_data[1]);
+                if (tempValue >= 2500 && tempValue <= 3500)
+                {
+                    tempChart.Series[0].Points.AddXY(_plotTime, tempValue);
+                    tempChart.Series[1].Points.AddXY(_plotTime, tempValue);
+                  //  _plotTime += _plotTimeStep;
+                }
+            }
+            catch (Exception error)
+            {
+                Debug.WriteLine(error.Message);
             }
         }
 
