@@ -362,7 +362,7 @@ namespace SerialPortApp
                 int currentTemp = Convert.ToInt32(_data[1]);
                 if (tempValue >= 2500 && tempValue <= 3500)
                 {
-                    tempChart.Series[0].Points.AddXY(_plotTime, tempValue);
+                    tempChart.Series[0].Points.AddXY(_plotTime, currentTemp);
                     tempChart.Series[1].Points.AddXY(_plotTime, tempValue);
                   //  _plotTime += _plotTimeStep;
                 }
