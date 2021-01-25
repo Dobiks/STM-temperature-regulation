@@ -245,7 +245,8 @@ namespace SerialPortApp
         string[] _data;
         double _plotTimeStep = 0.1;
         double _plotTime = 0.0;
-        double _plotTimeMax = 100.0;
+        const double _plotTimeMax = 100.0;
+        double _tempPlotTimeMax = 100.0;
         //double _tempChartMax = 100;
 
         #region buttons
@@ -333,6 +334,12 @@ namespace SerialPortApp
                     fanChart.Series[0].Points.AddXY(_plotTime, fanspeed);
                     _plotTime += _plotTimeStep;
                 }
+                if (_plotTime > _plotTimeMax)
+                {
+                    fanChart.Series[0].Points.RemoveAt(0);
+                    fanChart.ChartAreas[0].AxisX.Minimum = _plotTime - _plotTimeMax;
+                    fanChart.ChartAreas[0].AxisX.Maximum = _plotTime;
+                }
             }
             catch (Exception error)
             {
@@ -355,15 +362,11 @@ namespace SerialPortApp
                     tempChart.Series[1].Points.AddXY(_plotTime, targetTemp);
                     //  _plotTime += _plotTimeStep;
                 }
-                if (_plotTime > _plotTimeMax)
+                if (_plotTime > _tempPlotTimeMax)
                 {
-                    tempChart.Series[0].Points.RemoveAt(0);
-                    tempChart.Series[1].Points.RemoveAt(0);
-                    fanChart.Series[0].Points.RemoveAt(0);
-                    tempChart.ChartAreas[0].AxisX.Minimum = _plotTime - _plotTimeMax;
-                    tempChart.ChartAreas[0].AxisX.Maximum = _plotTime;
-                    fanChart.ChartAreas[0].AxisX.Minimum = _plotTime - _plotTimeMax;
-                    fanChart.ChartAreas[0].AxisX.Maximum = _plotTime;
+                    _tempPlotTimeMax += 100;
+                    tempChart.ChartAreas[0].AxisX.Maximum = _tempPlotTimeMax;
+                    tempChart.ChartAreas[0].AxisX.Minimum = _tempPlotTimeMax-100;
                 }
             }
             catch (Exception error)
