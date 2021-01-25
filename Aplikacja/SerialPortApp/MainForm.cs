@@ -399,7 +399,8 @@ namespace SerialPortApp
             logs[2] = fanSpeedbox.Text;
             if (logs[0] != "" && logs[1] != "" && logs[2] != "")
             {
-                log = "Target Temperature: " + logs[0] + " | Current Temperature: " + logs[1] + " | Fan Speed: " + logs[2] + "\r\n";
+                float diff = Math.Abs(Convert.ToSingle(logs[0]) - Convert.ToSingle(logs[1]));
+                log = "Target Temperature: " + logs[0] + " | Current Temperature: " + logs[1] + " | Fan Speed: " + logs[2] + " | Δ: " +diff + "\r\n";
                 logBox.AppendText(log);
                 logBox.ScrollToCaret();
             }
