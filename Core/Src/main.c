@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "crc.h"
 #include "i2c.h"
 #include "spi.h"
 #include "tim.h"
@@ -30,7 +31,6 @@
 #include "bmp280_config.h"
 #include "lcd_config.h"
 #include "encoder_config.h"
-#include "encoder.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,7 +45,6 @@
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 char rx_buffer[4];
-
 uint8_t* new_value;
 uint8_t* fan_percent;
 
@@ -62,20 +61,20 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
  {
-	if(huart->Instance==USART3)
-	 {
-		int i;
-		sscanf(rx_buffer, "%d", &i);
-		new_value = i;
-	 }
-	HAL_UART_Receive_IT(&huart3, (uint8_t*)rx_buffer, 4);
+if(huart->Instance==USART3)
+ {
+	int i;
+	sscanf(rx_buffer, "%d", &i);
+	new_value = i;
+ }
+HAL_UART_Receive_IT(&huart3, (uint8_t*)rx_buffer, 4);
  }
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+uint32_t crcVal;
 /* USER CODE END 0 */
 
 /**
@@ -88,8 +87,8 @@ int main(void)
 	struct bmp280_uncomp_data bmp280_1_data;
 	int32_t temp32;
 	double temp;
-	int32_t encoder_count;
-
+	char message[20];
+	uint32_t encoder_value; //Wartość z enkodera
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -117,19 +116,15 @@ int main(void)
   MX_I2C1_Init();
   MX_SPI4_Init();
   MX_TIM5_Init();
+  MX_CRC_Init();
   /* USER CODE BEGIN 2 */
-  BMP280_Init(&bmp280_1); //Sensor
-
-  //Heater PWM
+  BMP280_Init(&bmp280_1);
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
   __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 0);
+  HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
 
-  //Fan PWM
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
   __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, 0);
-
-  //Encoder
-  HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
 
   HAL_UART_Receive_IT(&huart3, (uint8_t*)rx_buffer, 4);
 
@@ -137,6 +132,7 @@ int main(void)
    LCD_Init(&hlcd1);
 
   /** Rotary quadrature encoder initialization *******************************************/
+   ENC_Init(&henc1);
 
   /* USER CODE END 2 */
 
@@ -147,30 +143,20 @@ int main(void)
 
 
 	  // Read rotary encoder counter
-	  encoder_count = __HAL_TIM_GET_COUNTER(&htim4);
-
+	   ENC_GetCounter(&henc1);
 	  /* Reading the raw data from sensor */
 	  bmp280_get_uncomp_data(&bmp280_1_data, &bmp280_1);
 	  /* Getting the 32 bit compensated temperature */
 	  bmp280_get_comp_temp_32bit(&temp32, bmp280_1_data.uncomp_temp, &bmp280_1);
 
-	  fan_percent=60;
+	  fan_percent=60;//temp
 
 	  // temp destination, temp actual, fan speed percentage
 	  _LCD_Show(&hlcd1, new_value,temp32 ,fan_percent);
+	  // char messagetemp destination, temp actual, fan speed percentage
+	  _Message_Generate(&message,temp32, new_value, fan_percent);
 
-		char text[5];
-		char message[20];
-		sprintf(text,"%d", new_value);
-		strcpy( message, text );
-		strcat( message, "," );
-		sprintf(text,"%d", temp32);
-		strcat( message, text );
-		strcat( message, "," );
-		sprintf(text,"%d", fan_percent);
-		strcat( message, text );
-		strcat( message, "\r\n" );
-		HAL_UART_Transmit(&huart3, (uint8_t*)message,  strlen(message), 1000);
+	  HAL_UART_Transmit(&huart3, (uint8_t*)message,  strlen(message), 1000);
 
 	  HAL_Delay(100);
 
