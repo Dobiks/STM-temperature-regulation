@@ -400,7 +400,7 @@ namespace SerialPortApp
             if (logs[0] != "" && logs[1] != "" && logs[2] != "")
             {
                 float diff = Math.Abs(Convert.ToSingle(logs[0]) - Convert.ToSingle(logs[1]));
-                log = "Target Temperature: " + logs[0] + " | Current Temperature: " + logs[1] + " | Fan Speed: " + logs[2] + " | Δ: " +diff + "\r\n";
+                log = "Target Temperature: " + logs[0] + " | Current Temperature: " + logs[1] + " | Fan Speed: " + logs[2] + " | Δ: " + diff + "\r\n";
                 logBox.AppendText(log);
                 logBox.ScrollToCaret();
             }
