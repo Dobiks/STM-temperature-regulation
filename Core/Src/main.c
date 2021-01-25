@@ -61,13 +61,13 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
  {
-if(huart->Instance==USART3)
- {
-	int i;
-	sscanf(rx_buffer, "%d", &i);
-	new_value = i;
- }
-HAL_UART_Receive_IT(&huart3, (uint8_t*)rx_buffer, 4);
+	if(huart->Instance==USART3)
+	 {
+		int i;
+		sscanf(rx_buffer, "%d", &i);
+		new_value = i;
+	 }
+	HAL_UART_Receive_IT(&huart3, (uint8_t*)rx_buffer, 4);
  }
 
 /* USER CODE END PFP */
@@ -88,7 +88,7 @@ int main(void)
 	int32_t temp32;
 	double temp;
 	char message[20];
-	uint32_t encoder_value; //Wartość z enkodera
+	uint32_t encoder_count; //Encoder value
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -118,13 +118,20 @@ int main(void)
   MX_TIM5_Init();
   MX_CRC_Init();
   /* USER CODE BEGIN 2 */
+
+  //Sensor
   BMP280_Init(&bmp280_1);
+
+  //Heater PWM
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
   __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 0);
-  HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
 
+  //Fan PWM
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
   __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, 0);
+
+  //Encoder init
+  HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
 
   HAL_UART_Receive_IT(&huart3, (uint8_t*)rx_buffer, 4);
 
@@ -132,7 +139,7 @@ int main(void)
    LCD_Init(&hlcd1);
 
   /** Rotary quadrature encoder initialization *******************************************/
-   ENC_Init(&henc1);
+
 
   /* USER CODE END 2 */
 
@@ -143,9 +150,11 @@ int main(void)
 
 
 	  // Read rotary encoder counter
-	   ENC_GetCounter(&henc1);
+	  encoder_count = __HAL_TIM_GET_COUNTER(&htim4);
+
 	  /* Reading the raw data from sensor */
 	  bmp280_get_uncomp_data(&bmp280_1_data, &bmp280_1);
+
 	  /* Getting the 32 bit compensated temperature */
 	  bmp280_get_comp_temp_32bit(&temp32, bmp280_1_data.uncomp_temp, &bmp280_1);
 
@@ -153,6 +162,7 @@ int main(void)
 
 	  // temp destination, temp actual, fan speed percentage
 	  _LCD_Show(&hlcd1, new_value,temp32 ,fan_percent);
+
 	  // char messagetemp destination, temp actual, fan speed percentage
 	  _Message_Generate(&message,temp32, new_value, fan_percent);
 
