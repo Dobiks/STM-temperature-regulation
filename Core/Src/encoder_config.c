@@ -13,42 +13,4 @@
 #include "encoder.h"
 #include "encoder_config.h"
 #include "main.h"
-#ifdef ENC_HARDWARE_COUNTER
 #include "tim.h"
-#endif
-
-/* Typedef -------------------------------------------------------------------*/
-
-/* Define --------------------------------------------------------------------*/
-
-/* Macro ---------------------------------------------------------------------*/
-
-/* Private variables ---------------------------------------------------------*/
-
-/* Public variables ----------------------------------------------------------*/
-#ifdef ENC_HARDWARE_COUNTER
-
-ENC_HandleTypeDef henc1 = {
-  .Timer = &htim4,
-  .Counter  = 0,
-  .CounterMax = 100, .CounterMin = 0,
-  .CounterInc = 0, .CounterDec = 0
-};
-
-#else
-
-ENC_HandleTypeDef henc1 = {
-  .CLK_Port = ENC_CLK_GPIO_Port, .CLK_Pin = ENC_CLK_Pin,
-  .DT_Port  = ENC_DT_GPIO_Port,  .DT_Pin  = ENC_DT_Pin,
-  .Counter  = 50,
-  .CounterMax = 100, .CounterMin = 0, .CounterStep = 1
-  .CounterInc = 0, .CounterDec = 0
-};
-
-#endif
-
-/* Private function prototypes -----------------------------------------------*/
-
-/* Private function ----------------------------------------------------------*/
-
-/* Public function -----------------------------------------------------------*/
