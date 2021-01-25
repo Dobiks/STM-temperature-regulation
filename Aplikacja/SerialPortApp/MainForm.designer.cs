@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.baudRateLabel = new System.Windows.Forms.Label();
             this.dataBitsLabel = new System.Windows.Forms.Label();
             this.parityLabel = new System.Windows.Forms.Label();
@@ -383,22 +383,22 @@
             // 
             // chart1
             // 
-            chartArea3.AxisX.Interval = 10D;
-            chartArea3.AxisX.Maximum = 100D;
-            chartArea3.AxisX.Minimum = 0D;
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Alignment = System.Drawing.StringAlignment.Center;
-            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            chartArea1.AxisX.Interval = 10D;
+            chartArea1.AxisX.Maximum = 100D;
+            chartArea1.AxisX.Minimum = 0D;
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Alignment = System.Drawing.StringAlignment.Center;
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(8, 304);
             this.chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart1.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(505, 127);
             this.chart1.TabIndex = 10;
             this.chart1.Text = "chart1";
@@ -432,7 +432,6 @@
             this.fanSpeedbox.Name = "fanSpeedbox";
             this.fanSpeedbox.Size = new System.Drawing.Size(42, 26);
             this.fanSpeedbox.TabIndex = 8;
-            this.fanSpeedbox.TextChanged += new System.EventHandler(this.fanSpeedbox_TextChanged);
             // 
             // label7
             // 
@@ -497,7 +496,6 @@
             this.currentTempBox.Name = "currentTempBox";
             this.currentTempBox.Size = new System.Drawing.Size(60, 26);
             this.currentTempBox.TabIndex = 5;
-            this.currentTempBox.TextChanged += new System.EventHandler(this.currentTempBox_TextChanged);
             // 
             // label4
             // 
