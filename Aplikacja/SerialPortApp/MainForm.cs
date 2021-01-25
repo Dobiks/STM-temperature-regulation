@@ -364,7 +364,7 @@ namespace SerialPortApp
                 }
                 if (_plotTime > _tempPlotTimeMax)
                 {
-                    _tempPlotTimeMax += 100;
+                    _tempPlotTimeMax += 1;
                     tempChart.ChartAreas[0].AxisX.Maximum = _tempPlotTimeMax;
                     tempChart.ChartAreas[0].AxisX.Minimum = _tempPlotTimeMax-100;
                 }
