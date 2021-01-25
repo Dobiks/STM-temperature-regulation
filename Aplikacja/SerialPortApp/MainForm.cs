@@ -55,6 +55,7 @@ namespace SerialPortApp
         * @param sender - contains a reference to the control/object that raised the event.
         * @param e - contains the serial port event data.
         */
+        int p = 0;
         void _spManager_NewSerialDataRecieved(object sender, SerialDataEventArgs e)
         {
             if (this.InvokeRequired)
@@ -64,7 +65,7 @@ namespace SerialPortApp
                 return;
             }
 
-            int maxTextLength = 1000; // maximum text length in text box
+            int maxTextLength = 100; // maximum text length in text box
             if (tbDataReceive.TextLength > maxTextLength)
                 tbDataReceive.Text = tbDataReceive.Text.Remove(0, tbDataReceive.TextLength - maxTextLength);
 
@@ -73,11 +74,7 @@ namespace SerialPortApp
 
             tbDataReceive.AppendText(str);
             tbDataReceive.ScrollToCaret();
-            if (str.Length > 8 && str[4] == ',')
-            {
-                ValDisp(str.Split('\r')[0]);
-            }
-
+            ValDisp();
         }
 
         /*
@@ -265,13 +262,34 @@ namespace SerialPortApp
             _spManager.Send(_dacValue.ToString(""));
         }
 
-        private void ValDisp(string str)
+        private void ValDisp()
         {
-            string[] data = str.Split(',');
-            data[2] = data[2].Replace("\r", String.Empty);
-            TargetTemperatureDisplay(data[0]);
-            CurrentTemperatureDisplay(data[1]);
-            FanSpeedDisplay(data[2]);
+            string str = tbDataReceive.Text;
+
+            if (str.Length > 12)
+            {
+                string[] tmp = str.Split(';');
+                if (tmp.Length > 0)
+                {
+                    for (int i = 0; i < tmp.Length; i++)
+                    {
+                        if (tmp[i].Length > 10)
+                        {
+                            string[] data = tmp[i].Split(',');
+                            if (data.Length == 3 && data[0].Length == 4 && data[1].Length == 4)
+                            {
+                                data[1] = data[1].Replace(" ", String.Empty);
+                                TargetTemperatureDisplay(data[0]);
+                                CurrentTemperatureDisplay(data[1]);
+                                FanSpeedDisplay(data[2]);
+                            }
+                            break;
+                        }
+                    }
+
+
+                }
+            }
         }
 
         private void TargetTemperatureDisplay(string str)
@@ -293,6 +311,7 @@ namespace SerialPortApp
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
+
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
@@ -311,6 +330,11 @@ namespace SerialPortApp
         }
 
         private void tbDataReceive_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
