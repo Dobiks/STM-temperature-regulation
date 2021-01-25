@@ -70,6 +70,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		int i;
 		sscanf(rx_buffer, "%d", &i);
 		new_value = i;
+		//Tutaj nie powinno być nic od enkodera , tylko odbieranie danych po uart, nie ma to żadnego związku z enkoderem
 		ENC_SetCounter(&henc1,(new_value - start_value)/10);
 
 	 }
@@ -174,13 +175,14 @@ int main(void)
 
 	  fan_percent=60;//temp
 
-	  // temp destination, temp actual, fan speed percentage
-	  _LCD_Show(&hlcd1, new_value,temp32 ,fan_percent);
 
 	  // char messagetemp destination, temp actual, fan speed percentage
 	  _Message_Generate(&message,temp32, new_value, fan_percent);
-
 	  HAL_UART_Transmit(&huart3, (uint8_t*)message,  strlen(message), 1000);
+
+	  // temp destination, temp actual, fan speed percentage
+		  _LCD_Show(&hlcd1, new_value,temp32 ,fan_percent);
+
 
 	  HAL_Delay(100);
 

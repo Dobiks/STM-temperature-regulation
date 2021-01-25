@@ -3853,6 +3853,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
  8001a5e:	b29a      	uxth	r2, r3
  8001a60:	4b10      	ldr	r3, [pc, #64]	; (8001aa4 <HAL_UART_RxCpltCallback+0x68>)
  8001a62:	801a      	strh	r2, [r3, #0]
+		//Tutaj nie powinno być nic od enkodera , tylko odbieranie danych po uart, nie ma to żadnego związku z enkoderem
 		ENC_SetCounter(&henc1,(new_value - start_value)/10);
  8001a64:	4b0f      	ldr	r3, [pc, #60]	; (8001aa4 <HAL_UART_RxCpltCallback+0x68>)
  8001a66:	881b      	ldrh	r3, [r3, #0]
@@ -4015,39 +4016,40 @@ int main(void)
  8001b4a:	223c      	movs	r2, #60	; 0x3c
  8001b4c:	601a      	str	r2, [r3, #0]
 
-	  // temp destination, temp actual, fan speed percentage
-	  _LCD_Show(&hlcd1, new_value,temp32 ,fan_percent);
- 8001b4e:	4b18      	ldr	r3, [pc, #96]	; (8001bb0 <main+0xf8>)
- 8001b50:	881b      	ldrh	r3, [r3, #0]
- 8001b52:	4619      	mov	r1, r3
- 8001b54:	69bb      	ldr	r3, [r7, #24]
- 8001b56:	461a      	mov	r2, r3
- 8001b58:	4b14      	ldr	r3, [pc, #80]	; (8001bac <main+0xf4>)
- 8001b5a:	681b      	ldr	r3, [r3, #0]
- 8001b5c:	4811      	ldr	r0, [pc, #68]	; (8001ba4 <main+0xec>)
- 8001b5e:	f7ff feed 	bl	800193c <_LCD_Show>
 
 	  // char messagetemp destination, temp actual, fan speed percentage
 	  _Message_Generate(&message,temp32, new_value, fan_percent);
- 8001b62:	69b9      	ldr	r1, [r7, #24]
- 8001b64:	4b12      	ldr	r3, [pc, #72]	; (8001bb0 <main+0xf8>)
- 8001b66:	881b      	ldrh	r3, [r3, #0]
- 8001b68:	461a      	mov	r2, r3
- 8001b6a:	4b10      	ldr	r3, [pc, #64]	; (8001bac <main+0xf4>)
- 8001b6c:	681b      	ldr	r3, [r3, #0]
- 8001b6e:	1d38      	adds	r0, r7, #4
- 8001b70:	f000 fd24 	bl	80025bc <_Message_Generate>
-
+ 8001b4e:	69b9      	ldr	r1, [r7, #24]
+ 8001b50:	4b17      	ldr	r3, [pc, #92]	; (8001bb0 <main+0xf8>)
+ 8001b52:	881b      	ldrh	r3, [r3, #0]
+ 8001b54:	461a      	mov	r2, r3
+ 8001b56:	4b15      	ldr	r3, [pc, #84]	; (8001bac <main+0xf4>)
+ 8001b58:	681b      	ldr	r3, [r3, #0]
+ 8001b5a:	1d38      	adds	r0, r7, #4
+ 8001b5c:	f000 fd2e 	bl	80025bc <_Message_Generate>
 	  HAL_UART_Transmit(&huart3, (uint8_t*)message,  strlen(message), 1000);
- 8001b74:	1d3b      	adds	r3, r7, #4
- 8001b76:	4618      	mov	r0, r3
- 8001b78:	f7fe fb4a 	bl	8000210 <strlen>
- 8001b7c:	4603      	mov	r3, r0
- 8001b7e:	b29a      	uxth	r2, r3
- 8001b80:	1d39      	adds	r1, r7, #4
- 8001b82:	f44f 737a 	mov.w	r3, #1000	; 0x3e8
- 8001b86:	4806      	ldr	r0, [pc, #24]	; (8001ba0 <main+0xe8>)
- 8001b88:	f004 fb02 	bl	8006190 <HAL_UART_Transmit>
+ 8001b60:	1d3b      	adds	r3, r7, #4
+ 8001b62:	4618      	mov	r0, r3
+ 8001b64:	f7fe fb54 	bl	8000210 <strlen>
+ 8001b68:	4603      	mov	r3, r0
+ 8001b6a:	b29a      	uxth	r2, r3
+ 8001b6c:	1d39      	adds	r1, r7, #4
+ 8001b6e:	f44f 737a 	mov.w	r3, #1000	; 0x3e8
+ 8001b72:	480b      	ldr	r0, [pc, #44]	; (8001ba0 <main+0xe8>)
+ 8001b74:	f004 fb0c 	bl	8006190 <HAL_UART_Transmit>
+
+	  // temp destination, temp actual, fan speed percentage
+		  _LCD_Show(&hlcd1, new_value,temp32 ,fan_percent);
+ 8001b78:	4b0d      	ldr	r3, [pc, #52]	; (8001bb0 <main+0xf8>)
+ 8001b7a:	881b      	ldrh	r3, [r3, #0]
+ 8001b7c:	4619      	mov	r1, r3
+ 8001b7e:	69bb      	ldr	r3, [r7, #24]
+ 8001b80:	461a      	mov	r2, r3
+ 8001b82:	4b0a      	ldr	r3, [pc, #40]	; (8001bac <main+0xf4>)
+ 8001b84:	681b      	ldr	r3, [r3, #0]
+ 8001b86:	4807      	ldr	r0, [pc, #28]	; (8001ba4 <main+0xec>)
+ 8001b88:	f7ff fed8 	bl	800193c <_LCD_Show>
+
 
 	  HAL_Delay(100);
  8001b8c:	2064      	movs	r0, #100	; 0x64
