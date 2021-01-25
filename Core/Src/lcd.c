@@ -270,7 +270,7 @@ void _LCD_Show(LCD_HandleTypeDef* hlcd, char* act_temp, char* dest_temp,char* fa
 
     LCD_SetCursor(hlcd, 1, 0);
 	LCD_printf(hlcd,"To: %4d", dest_temp );
-	LCD_SetCursor(hlcd, 1, 14);
+	LCD_SetCursor(hlcd, 1, 13);
     LCD_printf(hlcd,"%d", fan);
 
 }

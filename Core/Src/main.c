@@ -103,6 +103,8 @@ int main(void)
 	double temp;
 	char message[20];
 	uint32_t encoder_count; //Encoder value
+	float error=0;
+	float reset=0;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -191,6 +193,25 @@ int main(void)
 	  HAL_UART_Transmit(&huart3, (uint8_t*)message,  strlen(message), 1000);
 
 	  HAL_Delay(100);
+
+	  error = (new_value - temp32)/1000.0;
+
+	  if(error>0) // heater(reistor)
+	  {
+		  heater_percent = 100;
+		  fan_percent = 0;
+		  HEATER_PWM_SetDuty(&heaterpwm1, heater_percent);
+		  FAN_PWM_SetDuty(&fanpwm1, fan_percent);
+	  }
+	  else if(error<0) //cooler(fan)
+	  {
+		  fan_percent = 100;
+		  heater_percent = 0;
+		  HEATER_PWM_SetDuty(&heaterpwm1, heater_percent);
+		  FAN_PWM_SetDuty(&fanpwm1, fan_percent);
+	  }
+
+
 
     /* USER CODE END WHILE */
 
