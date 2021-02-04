@@ -247,7 +247,6 @@ namespace SerialPortApp
         double _plotTime = 0.0;
         const double _plotTimeMax = 100.0;
         double _tempPlotTimeMax = 100.0;
-        //double _tempChartMax = 100;
 
         #region buttons
         private void trackBar1_Scroll(object sender, EventArgs e)
@@ -360,7 +359,7 @@ namespace SerialPortApp
                 {
                     tempChart.Series[0].Points.AddXY(_plotTime, currentTemp);
                     tempChart.Series[1].Points.AddXY(_plotTime, targetTemp);
-                    //  _plotTime += _plotTimeStep;
+                     // _plotTime += _plotTimeStep;
                 }
                 if (_plotTime > _tempPlotTimeMax)
                 {

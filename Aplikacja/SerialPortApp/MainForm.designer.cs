@@ -399,11 +399,11 @@
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
-            series1.Name = "Current Temperature";
+            series1.Name = "Current Temperature [°C]";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series2.Legend = "Legend1";
-            series2.Name = "Target Temperature";
+            series2.Name = "Target Temperature [°C]";
             this.tempChart.Series.Add(series1);
             this.tempChart.Series.Add(series2);
             this.tempChart.Size = new System.Drawing.Size(505, 214);
@@ -453,7 +453,7 @@
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series3.Legend = "Legend1";
-            series3.Name = "Fan Speed";
+            series3.Name = "Fan Speed [%]";
             this.fanChart.Series.Add(series3);
             this.fanChart.Size = new System.Drawing.Size(505, 127);
             this.fanChart.TabIndex = 10;
