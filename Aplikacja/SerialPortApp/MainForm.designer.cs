@@ -440,8 +440,10 @@
             chartArea2.AxisX.Interval = 10D;
             chartArea2.AxisX.Maximum = 100D;
             chartArea2.AxisX.Minimum = 0D;
+            chartArea2.AxisX.Title = "Time[s]";
             chartArea2.AxisY.Maximum = 100D;
             chartArea2.AxisY.Minimum = 0D;
+            chartArea2.AxisY.Title = "Fan Speed [%]";
             chartArea2.Name = "ChartArea1";
             this.fanChart.ChartAreas.Add(chartArea2);
             legend2.Alignment = System.Drawing.StringAlignment.Center;

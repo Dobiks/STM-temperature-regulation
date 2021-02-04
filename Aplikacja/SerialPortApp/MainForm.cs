@@ -353,10 +353,12 @@ namespace SerialPortApp
             tempChart.ChartAreas[0].AxisX.LabelStyle.Format = "0";
             try
             {
-                int targetTemp = Convert.ToInt32(_data[0]);
-                int currentTemp = Convert.ToInt32(_data[1]);
+                float targetTemp = Convert.ToInt32(_data[0]);
+                float currentTemp = Convert.ToInt32(_data[1]);
                 if (targetTemp >= 2500 && targetTemp <= 3500)
                 {
+                    targetTemp = targetTemp / 1000;
+                    currentTemp = currentTemp / 1000;
                     tempChart.Series[0].Points.AddXY(_plotTime, currentTemp);
                     tempChart.Series[1].Points.AddXY(_plotTime, targetTemp);
                      // _plotTime += _plotTimeStep;
