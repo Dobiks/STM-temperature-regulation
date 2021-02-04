@@ -357,8 +357,8 @@ namespace SerialPortApp
                 float currentTemp = Convert.ToSingle(_data[1]);
                 if (targetTemp >= 2500 && targetTemp <= 3500)
                 {
-                    targetTemp = targetTemp / 1000;
-                    currentTemp = currentTemp / 1000;
+                    targetTemp = targetTemp / 100;
+                    currentTemp = currentTemp / 100;
                     tempChart.Series[0].Points.AddXY(_plotTime, currentTemp);
                     tempChart.Series[1].Points.AddXY(_plotTime, targetTemp);
                      // _plotTime += _plotTimeStep;
