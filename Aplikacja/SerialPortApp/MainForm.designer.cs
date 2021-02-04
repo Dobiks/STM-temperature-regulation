@@ -384,8 +384,8 @@
             chartArea1.AxisX.Interval = 10D;
             chartArea1.AxisX.Maximum = 100D;
             chartArea1.AxisX.Minimum = 0D;
-            chartArea1.AxisY.Maximum = 3600D;
-            chartArea1.AxisY.Minimum = 2400D;
+            chartArea1.AxisY.Maximum = 36D;
+            chartArea1.AxisY.Minimum = 24D;
             chartArea1.AxisY2.Maximum = 3600D;
             chartArea1.AxisY2.Minimum = 2400D;
             chartArea1.Name = "ChartArea1";
