@@ -1,6 +1,6 @@
 # UkladRegulacjiTemperaturySTM
 
-![alt text](https://i.ibb.co/5vsrhg3/image.png =250x250)
+![alt text](https://i.ibb.co/5vsrhg3/image.png)
 ![alt text](https://i.ibb.co/ZNv0d8d/image.png)
 
 ----------PINOUT---------
